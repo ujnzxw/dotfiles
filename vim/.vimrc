@@ -1093,7 +1093,7 @@ augroup markdown
 au!
 au FileType markdown setl spell         " Enable spellchecking.
 au FileType markdown setl expandtab     " Use spaces instead of tabs.
-au FileType markdown setl kabstop=2     " Lists are indented with 2 spaces.
+au FileType markdown setl tabstop=2     " Lists are indented with 2 spaces.
 au FileType markdown setl softtabstop=2 " Causes backspace to delete 2 spaces.
 au FileType markdown setl shiftwidth=2  " Shift by 2 spaces.
 augroup end
