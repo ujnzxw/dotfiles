@@ -10,7 +10,7 @@
 "------------------------------------------------------------------------------
 
 filetype off " Pathogen needs to run before 'plugin on'.
-call pathogen#inflect()
+call pathogen#infect()
 call pathogen#helptags() " Generate helptags for everything in 'runtimepath'.
 filetype plugin on
 
