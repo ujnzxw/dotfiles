@@ -5,6 +5,10 @@
 " Based on http://www.hermann-uwe.de/files/vimrc.
 "------------------------------------------------------------------------------
 
+" Source local plugin file if available.
+if filereadable(expand('~/.vimrc.plugin'))
+	source ~/.vimrc.plugin
+endif
 "------------------------------------------------------------------------------
 " Pathogen (http://www.vim.org/scripts/script.php?script_id=2332).
 "------------------------------------------------------------------------------
