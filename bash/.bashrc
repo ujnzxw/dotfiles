@@ -292,8 +292,6 @@ alias ri='ri --format=ansi'
 alias la='ls -a'
 alias ll='ls -l'
 
-# alias for work path change
-
 # Automatically disable flow control (Ctrl-S/Q) after reset because I use the
 # Ctrl-S shortcut in Vim.
 alias reset='reset && stty -ixon'
