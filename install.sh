@@ -3,6 +3,7 @@
 #-----------------------------------------------------------
 # Author       : ujnzxw
 # Description  : install the dotfiles into OS smoothly
+# Date         : 2016-07-11
 # Note         : don't move this script singlly.
 #              : please run this script in the current path
 #-----------------------------------------------------------
