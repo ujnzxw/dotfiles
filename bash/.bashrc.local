@@ -1,4 +1,9 @@
-####################xzhao027 settings##################
+
+#-------------------------------------
+# File:   $HOME/.bashrc.local
+# Author: ujnzxw
+# Desc:   This is my local bash settings
+#-------------------------------------
 
 # Java ENV setting
 export JAVA_HOME=/opt/java/jdk_1.8
