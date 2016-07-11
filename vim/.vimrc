@@ -9,6 +9,7 @@
 if filereadable(expand('~/.vimrc.plugin'))
 	source ~/.vimrc.plugin
 endif
+
 "------------------------------------------------------------------------------
 " Pathogen (http://www.vim.org/scripts/script.php?script_id=2332).
 "------------------------------------------------------------------------------
@@ -1068,11 +1069,8 @@ augroup end
 " Git commits
 augroup gitcommit
 au!
-au FileType gitcommit setl spell         " Enable spellchecking.
-au FileType gitcommit setl expandtab     " Use spaces instead of tabs.
-au FileType gitcommit setl tabstop=4     " A tab counts for 4 spaces.
-au FileType gitcommit setl softtabstop=4 " Causes backspace to delete 4 spaces.
-au FileType gitcommit setl shiftwidth=4  " Shift by 4 spaces.
+au FileType gitcommit setl spell     " Enable spellchecking.
+au FileType gitcommit setl expandtab " Use spaces instead of tabs.
 augroup end
 
 " Dokuwiki
