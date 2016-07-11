@@ -287,6 +287,13 @@ alias py='python'
 alias py2='python2'
 alias py3='python3'
 alias ri='ri --format=ansi'
+
+# alias for ls shotcut
+alias la='ls -a'
+alias ll='ls -l'
+
+# alias for work path change
+
 # Automatically disable flow control (Ctrl-S/Q) after reset because I use the
 # Ctrl-S shortcut in Vim.
 alias reset='reset && stty -ixon'
@@ -387,6 +394,13 @@ fi
 # Import local settings.
 #------------------------------------------------------------------------------
 
-if [[ -f ~/.bashrc.local ]]; then
+if [[ -s ~/.bashrc.local ]]; then
 	source ~/.bashrc.local
+fi
+
+#------------------------------------------------------------------------------
+# Import local settings.
+#------------------------------------------------------------------------------
+if [[ -s ~/.Xmodmap ]]; then
+	xmodmap ~/.Xmodmap
 fi
