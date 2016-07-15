@@ -11,7 +11,11 @@ export CLASSPATH=${JAVA_HOME}/lib
 export PATH=${JAVA_HOME}/bin:$PATH
 
 # alias
-
 alias work='cd /media/xzhao027/Documents/Work'
 alias fed='cd /media/xzhao027/Documents/Work/Feature/12.134-SFED'
 alias csf='cd /media/xzhao027/Documents/Work/CSF'
+
+# proxy settings
+if [ -f $HOME/bin/set-proxy ]; then
+	$HOME/bin/set-proxy
+fi

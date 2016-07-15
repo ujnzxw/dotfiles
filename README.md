@@ -1,3 +1,8 @@
+ujnzxw's Dot Files
+=====================
+These files is based on Petr Zemek's project.
+Feel free to let me know if there is any tort.
+
 Petr Zemek's Dot Files
 ======================
 
