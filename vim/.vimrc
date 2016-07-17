@@ -375,10 +375,7 @@ function! s:ToggleSpelllang()
 endfunction
 nnoremap <silent> <S-F1> :call <SID>ToggleSpelllang()<CR>
 
-" F2: Toggle the display of unprintable characters.
-nnoremap <silent> <F2> :set list!<CR>:set list?<CR>
-
-" Shift+F2: Toggle highlighting of characters exceeding textwidth.
+" F2: Toggle highlighting of characters exceeding textwidth.
 function! s:ToggleExceedingCharsHighlight()
 	if exists('w:long_line_match')
 		silent! call matchdelete(w:long_line_match)
@@ -392,12 +389,15 @@ function! s:ToggleExceedingCharsHighlight()
 		echo 'Enable highlighting after 80 characters.'
 	endif
 endfunction
-nnoremap <silent> <S-F2> :call <SID>ToggleExceedingCharsHighlight()<CR>
+nnoremap <silent> <F2> :call <SID>ToggleExceedingCharsHighlight()<CR>
 
-" F3: Toggle line wrapping.
-nnoremap <silent> <F3> :set nowrap!<CR>:set nowrap?<CR>
+" Shift+F2: Toggle the display of unprintable characters.
+nnoremap <silent> <S-F2> :set list!<CR>:set list?<CR>
 
-" Shift+F3: Toggle the display of colorcolumn.
+" Shift+F3: Toggle line wrapping.
+nnoremap <silent> <S-F3> :set nowrap!<CR>:set nowrap?<CR>
+
+" F3: Toggle the display of colorcolumn.
 function! s:ToggleColorColumn()
 	if &colorcolumn > 0
 		set colorcolumn=""
@@ -407,7 +407,7 @@ function! s:ToggleColorColumn()
 		set colorcolumn=80
 	endif
 endfunction
-nnoremap <silent> <S-F3> :call <SID>ToggleColorColumn()<CR>
+nnoremap <silent> <F3> :call <SID>ToggleColorColumn()<CR>
 
 " F4: Toggle hexdump view of binary files.
 function! s:ToggleHexdumpView()

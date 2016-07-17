@@ -66,4 +66,5 @@ LN $ROOT/vim/.vimrc.plugin         $HOME/.vimrc.plugin
 LN $ROOT/xmodmap/.Xmodmap          $HOME/.Xmodmap
 LN $ROOT/mplayer/.mplayer          $HOME/.mplayer
 LN $ROOT/vimperator/.vimperatorrc  $HOME/.vimperatorrc
+LN $ROOT/ssh/config                $HOME/.ssh/config
 
