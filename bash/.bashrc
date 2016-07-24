@@ -19,9 +19,6 @@ function prepend_to_path() {
 	fi
 }
 
-# Include the path to Ruby gems.
-prepend_to_path "$(ruby -rubygems -e 'puts Gem.user_dir')/bin"
-
 # Include the user's private bin.
 prepend_to_path "$HOME/bin"
 
@@ -345,12 +342,6 @@ function csyntax() {
 	gcc -std=c11 -fsyntax-only "$1" 2>&1 | grep "error:"
 }
 
-# Conversions.
-alias HEX="ruby -e 'printf(\"0x%X\n\", ARGV[0])'"
-alias DEC="ruby -e 'printf(\"%d\n\", ARGV[0])'"
-alias BIN="ruby -e 'printf(\"%bb\n\", ARGV[0])'"
-alias WORD="ruby -e 'printf(\"0x%04X\n\", ARGV[0])'"
-
 # Pacman/yaourt aliases.
 if command -v yaourt &> /dev/null; then
 	alias paci='yaourt -S'   # Install
@@ -375,18 +366,6 @@ alias aptu='aptitude update && aptitude upgrade'
 
 # Deflates the given file/contents, like a Git object.
 alias deflate="perl -MCompress::Zlib -e 'undef $/; print uncompress(<>)'"
-
-#------------------------------------------------------------------------------
-# RVM (Ruby Version Manager).
-#------------------------------------------------------------------------------
-
-if [[ -f /usr/local/rvm/scripts/rvm ]]; then
-	source /usr/local/rvm/scripts/rvm
-fi
-
-if [[ -f /usr/local/rvm/scripts/completion ]]; then
-	source /usr/local/rvm/scripts/completion
-fi
 
 #------------------------------------------------------------------------------
 # Import local settings.
