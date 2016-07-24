@@ -82,9 +82,11 @@ au FileType * set autoindent nosmartindent nocindent fo+=q fo-=r fo-=o fo+=j
 
 " Whitespace.
 set tabstop=4           " Number of spaces a tab counts for.
+set softtabstop=4       " Causes backspace to delete 4 spaces
 set shiftwidth=4        " Number of spaces to use for each step of indent.
 set shiftround          " Round indent to multiple of shiftwidth.
-set noexpandtab         " Do not expand tab with spaces.
+"set noexpandtab        " Do not expand tab with spaces.
+set expandtab         	" Expand tab with spaces.
 
 " Wrapping.
 set wrap                " Enable text wrapping.
@@ -549,11 +551,11 @@ noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 
 " Jump to the previous/next tab.
-noremap <silent> J gT
-noremap <silent> K gt
+"noremap <silent> J gT
+"noremap <silent> K gt
 
 " Join lines by <Leader>+j because I use J to go to the previous tab.
-noremap <Leader>j J
+"noremap <Leader>j J
 
 " Join lines without producing any spaces. It works like gJ, but does not keep
 " the indentation whitespace.
@@ -981,7 +983,8 @@ augroup end
 " Shell
 augroup sh
 au!
-au FileType sh setl noexpandtab  " Use tabs instead of spaces.
+"au FileType sh setl noexpandtab  " Use tabs instead of spaces.
+au FileType sh setl expandtab  " expend tabs to  spaces.
 augroup end
 
 " MySQL
