@@ -266,7 +266,7 @@ alias vd='vimdiff'
 alias gvim='gvim -p'
 alias gv='gvim'
 alias gvd='gvimdiff'
-alias m='make'
+#alias m='make'
 function M() { make "$@" && make install; }
 alias news='newsbeuter -q'
 if [ "$(id -u)" -eq 0 ]; then
