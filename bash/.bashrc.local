@@ -16,6 +16,8 @@ alias fed='cd /media/xzhao027/Documents/Work/Feature/12.134-SFED'
 alias csf='cd /media/xzhao027/Documents/Work/CSF'
 
 # proxy settings
-if [ -f $HOME/bin/set-proxy ]; then
-	$HOME/bin/set-proxy
+if [ type set-proxy > /dev/null 2>&1 ]; then
+    set-proxy
+else
+    echo "set-proxy program is not found!"
 fi
