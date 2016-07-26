@@ -455,6 +455,9 @@ nnoremap <silent> <S-F4> :call <SID>ToggleObjdumpView()<CR>
 " F6: Toggle relative/absolute numbers.
 nnoremap <silent> <F6> :set relativenumber!<CR>:set relativenumber?<CR>
 
+" F7: Toggle numbers.
+nnoremap <silent> <F7> :set number!<CR>:set nonumber?<CR>
+
 " F9: Run tests for the given file.
 " The mapping is defined separately for each file type.
 
