@@ -11,15 +11,6 @@ if filereadable(expand('~/.vimrc.plugin'))
 endif
 
 "------------------------------------------------------------------------------
-" Pathogen (http://www.vim.org/scripts/script.php?script_id=2332).
-"------------------------------------------------------------------------------
-
-filetype off " Pathogen needs to run before 'plugin on'.
-call pathogen#infect()
-call pathogen#helptags() " Generate helptags for everything in 'runtimepath'.
-filetype plugin on
-
-"------------------------------------------------------------------------------
 " General.
 "------------------------------------------------------------------------------
 
@@ -778,19 +769,6 @@ augroup end
 " xmledit.
 "---------
 let g:xml_tag_completion_map = '<C-l>'
-
-"------------------------------------------------------------
-" tcomment_vim: An extensible & universal comment vim-plugin.
-"------------------------------------------------------------
-" Disable leader commands (I don't use them).
-let g:tcommentMapLeader1 = ''
-let g:tcommentMapLeader2 = ''
-" Do not comment blank lines.
-let g:tcomment#blank_lines = 0
-" Custom comment types.
-call tcomment#DefineType('c', tcomment#GetLineC('// %s'))
-call tcomment#DefineType('gdb', '# %s')
-call tcomment#DefineType('llvm', '; %s')
 
 "------------------------------------------------------------------------------
 " File-type specific settings and other autocommands.
