@@ -402,7 +402,7 @@ function! s:ToggleColorColumn()
 endfunction
 nnoremap <silent> <F3> :call <SID>ToggleColorColumn()<CR>
 
-" F4: Toggle hexdump view of binary files.
+" F8: Toggle hexdump view of binary files.
 function! s:ToggleHexdumpView()
 	if &filetype ==# 'xxd'
 		" Turn off hexdump view.
@@ -414,9 +414,9 @@ function! s:ToggleHexdumpView()
 		set filetype=xxd
 	endif
 endfunction
-nnoremap <silent> <F4> :call <SID>ToggleHexdumpView()<CR>
+nnoremap <silent> <F8> :call <SID>ToggleHexdumpView()<CR>
 
-" Shift+F4: Toggle objdump view of binary files.
+" Shift+F8: Toggle objdump view of binary files.
 function! s:ToggleObjdumpView()
 	if &filetype ==# 'objdump'
 		" Turn off objdump view.
@@ -441,7 +441,7 @@ function! s:ToggleObjdumpView()
 		set readonly
 	endif
 endfunction
-nnoremap <silent> <S-F4> :call <SID>ToggleObjdumpView()<CR>
+nnoremap <silent> <S-F8> :call <SID>ToggleObjdumpView()<CR>
 
 " F6: Toggle relative/absolute numbers.
 nnoremap <silent> <F6> :set relativenumber!<CR>:set relativenumber?<CR>
@@ -460,7 +460,7 @@ nnoremap <silent> <F7> :set number!<CR>:set nonumber?<CR>
 
 " F11: Make.
 " Executes :make and opens the quickfix window if there is an error.
-nnoremap <F11> mp :echo 'Making...' <Bar> silent make <Bar> botright cw<CR><C-w><Up>
+" nnoremap <F11> mp :echo 'Making...' <Bar> silent make <Bar> botright cw<CR><C-w><Up>
 
 "------------------------------------------------------------------------------
 " General-purpose commands.
