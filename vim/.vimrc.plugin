@@ -5,7 +5,7 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/vundle
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
@@ -53,7 +53,6 @@ if !exists('g:airline_symbols')
 endif
 let g:airline_symbols.space = "\ua0"
 " let g:airline_exclude_filename = []
-let g:Powerline_symbols='fancy'
 " Must be set to 1 when install powerline fonts."
 let g:airline_powerline_fonts=1"
 let Powerline_symbols='fancy'
@@ -71,9 +70,6 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 nnoremap <C-N> :bn<CR>
 nnoremap <C-P> :bp<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" command-t - Fast file navigation for VIM
-Plugin 'wincent/command-t'
 
 "----------------------
 " plugin from http://vim-scripts.org/vim/scripts.html
