@@ -3,9 +3,23 @@ ujnzxw's Dot Files
 
 Steven ZHAO's configuration files.
 
-Installation
+Linux, \*nix Installation
 ------------
-TODO
+The easiest way to install ujnzxw-dotfiles is to use our automatic installer by simply copying and pasting the following line into a terminal. This will install ujnzxw-dotfiles and backup your existing vim configuration.
+
+*Requires Git 1.7+ and Vim 7.3+*
+
+```
+curl https://raw.githubusercontent.com/ujnzxw/dotfiles/master/install.sh -L > ujnzxw-dotfiles.sh && sh ujnzxw-dotfiles.sh
+```
+If you have a bash-compatible shell you can run the script directly:
+
+```
+ sh <(curl https://raw.githubusercontent.com/ujnzxw/dotfiles/master/install.sh -L)
+```
+
+
+
 
 Software/Plugin Abstract
 ------------------------
