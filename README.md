@@ -5,7 +5,10 @@ Steven ZHAO's configuration files.
 
 Installation
 ------------
+TODO
 
+Software/Plugin Abstract
+------------------------
 #####  Vundle
 
 A vim plugin manager
@@ -52,19 +55,20 @@ Distributed under the MIT license. See the LICENSE file for more details.
 Thanks
 ------
 
-[spf13/spf13-vim](https://github.com/spf13/spf13-vim)
-[s3rvac/dotfiles](https://github.com/s3rvac/dotfiles)
+- [spf13/spf13-vim](https://github.com/spf13/spf13-vim)
+- [s3rvac/dotfiles](https://github.com/s3rvac/dotfiles)
+- [erikw/tmux-powerline](https://github.com/erikw/tmux-powerline)
 
 Author
 ------
 
-ujnzxw - Steven Zhao
+ujnzxw - Steven ZHAO
 
 
 Distributed under the MIT license. See the LICENSE file for more details.
 
-
 Reference
 ---------
 1. [How to Install Pip on Ubuntu 14.04 LTS](http://www.liquidweb.com/kb/how-to-install-pip-on-ubuntu-14-04-lts/)
+2. [tmux - A Great Terminal Multiplexer](http://blog.chinaunix.net/attachment/attach/77/17/19/907717190c5d1d25c8b0c72bd53ad9c203af9561a.pdf)
 
