@@ -157,6 +157,9 @@ create_symlinks() {
     LN $source_path/mplayer/.mplayer         $target_path/.mplayer
     LN $source_path/vimperator/.vimperatorrc $target_path/.vimperatorrc
     LN $source_path/ssh/config               $target_path/.ssh/config
+    LN $source_path/tmux/.tmux.conf          $target_path/.tmux.conf
+    LN $source_path/tmux/tmux-powerline      $target_path/.tmux-powerline
+    LN $source_path/tmux/.tmux-powerlinerc   $target_path/.tmux-powerlinerc
 
     ret="$?"
     success "Setting up vim symlinks."
