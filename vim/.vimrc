@@ -1,13 +1,18 @@
+"                       _
+"                _   _ (_)_ __  ______  ____      __
+"               | | | || | '_ \|_  /\ \/ /\ \ /\ / /
+"               | |_| || | | | |/ /  >  <  \ V  V /
+"                \__,_|/ |_| |_/___|/_/\_\  \_/\_/
+"                    |__/
 "------------------------------------------------------------------------------
 " File:     $HOME/.vimrc
-" Author:   Petr Zemek <s3rvac@gmail.com>
+" Author:   ujnzxw <ujnzxw@gmail.com>
 "
-" Based on http://www.hermann-uwe.de/files/vimrc.
 "------------------------------------------------------------------------------
 
 " Source local plugin file if available.
 if filereadable(expand('~/.vimrc.plugin'))
-	source ~/.vimrc.plugin
+    source ~/.vimrc.plugin
 endif
 
 "------------------------------------------------------------------------------
@@ -77,7 +82,23 @@ set softtabstop=4       " Causes backspace to delete 4 spaces
 set shiftwidth=4        " Number of spaces to use for each step of indent.
 set shiftround          " Round indent to multiple of shiftwidth.
 "set noexpandtab        " Do not expand tab with spaces.
-set expandtab         	" Expand tab with spaces.
+set expandtab             " Expand tab with spaces.
+    " Strip whitespace {
+    function! StripTrailingWhitespace()
+        " Preparation: save last search, and cursor position.
+        let _s=@/
+        let l = line(".")
+        let c = col(".")
+        " do the business:
+        %s/\s\+$//e
+        " clean up: restore previous search history, and cursor position        let @/=_s
+        call cursor(l, c)
+    endfunction
+    " }
+let g:keep_trailing_whitespace = 1
+if !exists('g:keep_trailing_whitespace')
+    call StripTrailingWhitespace()
+endif
 
 " Wrapping.
 set wrap                " Enable text wrapping.
@@ -93,47 +114,47 @@ set showtabline=1       " Display a tabline only if there are at least two tabs.
 " Use a custom function that displays tab numbers in the tabline. Based on
 " http://superuser.com/a/477221.
 function! MyTabLine()
-	let s = ''
-	let wn = ''
-	let t = tabpagenr()
-	let i = 1
-	while i <= tabpagenr('$')
-		let buflist = tabpagebuflist(i)
-		let winnr = tabpagewinnr(i)
-		let s .= '%' . i . 'T'
-		let s .= (i == t ? '%1*' : '%2*')
-		let s .= ' '
-		let wn = tabpagewinnr(i,'$')
-		let s .= '%#TabNum#'
-		let s .= i
-		let s .= (i == t ? '%#TabLineSel#' : '%#TabLine#')
-		let bufnr = buflist[winnr - 1]
-		let file = bufname(bufnr)
-		let buftype = getbufvar(bufnr, 'buftype')
-		if buftype == 'nofile'
-			if file =~ '\/.'
-				let file = substitute(file, '.*\/\ze.', '', '')
-			endif
-		else
-			" Shorten file name to include only first letters of each
-			" directory.
-			let file = pathshorten(file)
-		endif
-		if file == ''
-			let file = '[No Name]'
-		endif
-		let s .= ' ' . file . ' '
-		let i = i + 1
-		" Add '[+]' if one of the buffers in the tab page is modified.
-		for bufnr in buflist
-			if getbufvar(bufnr, '&modified')
-				let s .= '[+]'
-				break
-			endif
-		endfor
-	endwhile
-	let s .= '%T%#TabLineFill#%='
-	return s
+    let s = ''
+    let wn = ''
+    let t = tabpagenr()
+    let i = 1
+    while i <= tabpagenr('$')
+        let buflist = tabpagebuflist(i)
+        let winnr = tabpagewinnr(i)
+        let s .= '%' . i . 'T'
+        let s .= (i == t ? '%1*' : '%2*')
+        let s .= ' '
+        let wn = tabpagewinnr(i,'$')
+        let s .= '%#TabNum#'
+        let s .= i
+        let s .= (i == t ? '%#TabLineSel#' : '%#TabLine#')
+        let bufnr = buflist[winnr - 1]
+        let file = bufname(bufnr)
+        let buftype = getbufvar(bufnr, 'buftype')
+        if buftype == 'nofile'
+            if file =~ '\/.'
+                let file = substitute(file, '.*\/\ze.', '', '')
+            endif
+        else
+            " Shorten file name to include only first letters of each
+            " directory.
+            let file = pathshorten(file)
+        endif
+        if file == ''
+            let file = '[No Name]'
+        endif
+        let s .= ' ' . file . ' '
+        let i = i + 1
+        " Add '[+]' if one of the buffers in the tab page is modified.
+        for bufnr in buflist
+            if getbufvar(bufnr, '&modified')
+                let s .= '[+]'
+                break
+            endif
+        endfor
+    endwhile
+    let s .= '%T%#TabLineFill#%='
+    return s
 endfunction
 set tabline=%!MyTabLine()
 highlight link TabNum Special
@@ -148,9 +169,15 @@ set statusline+=\ %y                         " File type.
 set statusline+=\ [\%03.3b,0x\%02.2B,U+%04B] " Codes of the character under cursor.
 set statusline+=\ [%l/%L\ (%p%%),%v]         " Line and column numbers.
 
-" Tell Vim which characters to show for expanded tabs, trailing whitespace,
-" ends of lines, and non-breakable space.
-set listchars=tab:>-,trail:#,eol:$,nbsp:~,extends:>,precedes:<
+" listchars {
+    set list
+
+    " Tell Vim which characters to show for expanded tabs,
+    " trailing whitespace, ends of lines, and non-breakable space.
+    " Highlight problematic whitespace
+    set listchars=tab:>-,trail:•,nbsp:~,extends:>,precedes:<
+
+" }
 
 " Allow arrows at the end/beginning of lines to move to the next/previous line.
 set whichwrap+=<,>,[,]
@@ -193,7 +220,7 @@ set nofoldenable
 " No bell sounds.
 set noerrorbells visualbell t_vb=
 if has('gui_running')
-	au GUIEnter * set visualbell t_vb=
+    au GUIEnter * set visualbell t_vb=
 endif
 
 " Encoding and end of line.
@@ -219,73 +246,73 @@ set spelllang=en_us,en_gb
 
 " Graphical Vim.
 if has('gui_running')
-	" Font.
-	set guifont=Monospace\ 10.5
+    " Font.
+    set guifont=Monospace\ 10.5
 
-	" GUI options:
-	"  - aA: Enable autoselection.
-	"  - c: Use console dialogs.
-	"  - i: Use a Vim icon.
-	" Menubar, toolbar, scrollbars etc. are disabled.
-	set guioptions=aAci
+    " GUI options:
+    "  - aA: Enable autoselection.
+    "  - c: Use console dialogs.
+    "  - i: Use a Vim icon.
+    " Menubar, toolbar, scrollbars etc. are disabled.
+    set guioptions=aAci
 
-	" Leave no pixels around the GVim window.
-	set guiheadroom=0
+    " Leave no pixels around the GVim window.
+    set guiheadroom=0
 
-	" Enable mouse usage.
-	set mouse=a
+    " Enable mouse usage.
+    set mouse=a
 
-	" Hide mouse cursor when editing.
-	set mousehide
+    " Hide mouse cursor when editing.
+    set mousehide
 
-	" Disable cursor blinking.
-	set guicursor=a:blinkon0
+    " Disable cursor blinking.
+    set guicursor=a:blinkon0
 " Vim in terminal.
 else
-	" Lower the timeout when entering normal mode from insert mode.
-	set ttimeoutlen=0
+    " Lower the timeout when entering normal mode from insert mode.
+    set ttimeoutlen=0
 
-	" Check for changes in files more often. This makes Vim in terminal behaves
-	" more like GVim, although sadly not the same.
-	augroup file_change_check
-	au!
-	au BufEnter * silent! checktime
-	augroup end
+    " Check for changes in files more often. This makes Vim in terminal behaves
+    " more like GVim, although sadly not the same.
+    augroup file_change_check
+    au!
+    au BufEnter * silent! checktime
+    augroup end
 
-	" Make some key combinations work when running Vim in Tmux.
-	if exists('$TMUX')
-		execute "set <xUp>=\e[1;*A"
-		execute "set <xDown>=\e[1;*B"
-		execute "set <xRight>=\e[1;*C"
-		execute "set <xLeft>=\e[1;*D"
-		execute "set <xHome>=\e[1;*H"
-		execute "set <xEnd>=\e[1;*F"
-		execute "set <Insert>=\e[2;*~"
-		execute "set <Delete>=\e[3;*~"
-		execute "set <PageUp>=\e[5;*~"
-		execute "set <PageDown>=\e[6;*~"
-		if exists('$MC_TMPDIR')
-			" Running inside Midnight Commander.
-			execute "set <F1>=\e[1;*P"
-			execute "set <F2>=\e[1;*Q"
-			execute "set <F3>=\e[1;*R"
-			execute "set <F4>=\e[1;*S"
-		else
-			" Not running inside Midnight Commander.
-			execute "set <xF1>=\e[1;*P"
-			execute "set <xF2>=\e[1;*Q"
-			execute "set <xF3>=\e[1;*R"
-			execute "set <xF4>=\e[1;*S"
-		endif
-		execute "set <F5>=\e[15;*~"
-		execute "set <F6>=\e[17;*~"
-		execute "set <F7>=\e[18;*~"
-		execute "set <F8>=\e[19;*~"
-		execute "set <F9>=\e[20;*~"
-		execute "set <F10>=\e[21;*~"
-		execute "set <F11>=\e[23;*~"
-		execute "set <F12>=\e[24;*~"
-	endif
+    " Make some key combinations work when running Vim in Tmux.
+    if exists('$TMUX')
+        execute "set <xUp>=\e[1;*A"
+        execute "set <xDown>=\e[1;*B"
+        execute "set <xRight>=\e[1;*C"
+        execute "set <xLeft>=\e[1;*D"
+        execute "set <xHome>=\e[1;*H"
+        execute "set <xEnd>=\e[1;*F"
+        execute "set <Insert>=\e[2;*~"
+        execute "set <Delete>=\e[3;*~"
+        execute "set <PageUp>=\e[5;*~"
+        execute "set <PageDown>=\e[6;*~"
+        if exists('$MC_TMPDIR')
+            " Running inside Midnight Commander.
+            execute "set <F1>=\e[1;*P"
+            execute "set <F2>=\e[1;*Q"
+            execute "set <F3>=\e[1;*R"
+            execute "set <F4>=\e[1;*S"
+        else
+            " Not running inside Midnight Commander.
+            execute "set <xF1>=\e[1;*P"
+            execute "set <xF2>=\e[1;*Q"
+            execute "set <xF3>=\e[1;*R"
+            execute "set <xF4>=\e[1;*S"
+        endif
+        execute "set <F5>=\e[15;*~"
+        execute "set <F6>=\e[17;*~"
+        execute "set <F7>=\e[18;*~"
+        execute "set <F8>=\e[19;*~"
+        execute "set <F9>=\e[20;*~"
+        execute "set <F10>=\e[21;*~"
+        execute "set <F11>=\e[23;*~"
+        execute "set <F12>=\e[24;*~"
+    endif
 endif
 
 "------------------------------------------------------------------------------
@@ -359,28 +386,28 @@ nnoremap <silent> <F1> :set spell!<CR>:set spell?<CR>
 
 " Shift+F1: Toggle spell dictionary between English and Czech.
 function! s:ToggleSpelllang()
-	if &spelllang =~ 'en'
-		set spelllang=cs
-	else
-		set spelllang=en_us,en_gb
-	endif
-	set spelllang?
+    if &spelllang =~ 'en'
+        set spelllang=cs
+    else
+        set spelllang=en_us,en_gb
+    endif
+    set spelllang?
 endfunction
 nnoremap <silent> <S-F1> :call <SID>ToggleSpelllang()<CR>
 
 " F2: Toggle highlighting of characters exceeding textwidth.
 function! s:ToggleExceedingCharsHighlight()
-	if exists('w:long_line_match')
-		silent! call matchdelete(w:long_line_match)
-		unlet w:long_line_match
-		echo 'Disable highlighting.'
-	elseif &textwidth > 0
-		let w:long_line_match=matchadd('ExceedCharsGroup', '\%>' . &textwidth . 'v.\+', -1)
-		echo 'Enable highlighting after ' . &textwidth . ' characters.'
-	else
-		let w:long_line_match=matchadd('ExceedCharsGroup', '\%>80v.\+', -1)
-		echo 'Enable highlighting after 80 characters.'
-	endif
+    if exists('w:long_line_match')
+        silent! call matchdelete(w:long_line_match)
+        unlet w:long_line_match
+        echo 'Disable highlighting.'
+    elseif &textwidth > 0
+        let w:long_line_match=matchadd('ExceedCharsGroup', '\%>' . &textwidth . 'v.\+', -1)
+        echo 'Enable highlighting after ' . &textwidth . ' characters.'
+    else
+        let w:long_line_match=matchadd('ExceedCharsGroup', '\%>80v.\+', -1)
+        echo 'Enable highlighting after 80 characters.'
+    endif
 endfunction
 nnoremap <silent> <F2> :call <SID>ToggleExceedingCharsHighlight()<CR>
 
@@ -392,54 +419,54 @@ nnoremap <silent> <S-F3> :set nowrap!<CR>:set nowrap?<CR>
 
 " F3: Toggle the display of colorcolumn.
 function! s:ToggleColorColumn()
-	if &colorcolumn > 0
-		set colorcolumn=""
-	elseif &textwidth > 0
-		let &colorcolumn = &textwidth
-	else
-		set colorcolumn=80
-	endif
+    if &colorcolumn > 0
+        set colorcolumn=""
+    elseif &textwidth > 0
+        let &colorcolumn = &textwidth
+    else
+        set colorcolumn=80
+    endif
 endfunction
 nnoremap <silent> <F3> :call <SID>ToggleColorColumn()<CR>
 
 " F8: Toggle hexdump view of binary files.
 function! s:ToggleHexdumpView()
-	if &filetype ==# 'xxd'
-		" Turn off hexdump view.
-		silent! :%!xxd -r
-		set filetype=
-	else
-		" Turn on hexdump view.
-		silent! :%!xxd
-		set filetype=xxd
-	endif
+    if &filetype ==# 'xxd'
+        " Turn off hexdump view.
+        silent! :%!xxd -r
+        set filetype=
+    else
+        " Turn on hexdump view.
+        silent! :%!xxd
+        set filetype=xxd
+    endif
 endfunction
 nnoremap <silent> <F8> :call <SID>ToggleHexdumpView()<CR>
 
 " Shift+F8: Toggle objdump view of binary files.
 function! s:ToggleObjdumpView()
-	if &filetype ==# 'objdump'
-		" Turn off objdump view.
-		" Replace the buffer with the original content of the buffer, stored in
-		" the Z register.
-		normal! ggVG"ZP
-		set filetype=
-		set noreadonly
-	else
-		" Turn on objdump view.
-		" Cut the original content of the buffer into the Z register so I can
-		" use it later to restore the original content.
-		normal! ggVG"Zd
-		" Get the output from objdump and paste it into the buffer.
-		silent! :read !objdump -S %
-		" Go to the beginning of the file.
-		normal! ggdd
-		" Set a proper file type to enable syntax highlighting through
-		" http://www.vim.org/scripts/script.php?script_id=530.
-		set filetype=objdump
-		" Prevent accidental overwrites.
-		set readonly
-	endif
+    if &filetype ==# 'objdump'
+        " Turn off objdump view.
+        " Replace the buffer with the original content of the buffer, stored in
+        " the Z register.
+        normal! ggVG"ZP
+        set filetype=
+        set noreadonly
+    else
+        " Turn on objdump view.
+        " Cut the original content of the buffer into the Z register so I can
+        " use it later to restore the original content.
+        normal! ggVG"Zd
+        " Get the output from objdump and paste it into the buffer.
+        silent! :read !objdump -S %
+        " Go to the beginning of the file.
+        normal! ggdd
+        " Set a proper file type to enable syntax highlighting through
+        " http://www.vim.org/scripts/script.php?script_id=530.
+        set filetype=objdump
+        " Prevent accidental overwrites.
+        set readonly
+    endif
 endfunction
 nnoremap <silent> <S-F8> :call <SID>ToggleObjdumpView()<CR>
 
@@ -528,14 +555,14 @@ nnoremap ' `
 nnoremap ` '
 
 " Disable arrows keys (I use exclusively h/j/k/l).
-noremap <Up> <Nop>
-noremap <Down> <Nop>
-noremap <Left> <Nop>
-noremap <Right> <Nop>
-inoremap <Up> <Nop>
-inoremap <Down> <Nop>
-inoremap <Left> <Nop>
-inoremap <Right> <Nop>
+noremap  <Up>     <Nop>
+noremap  <Down>   <Nop>
+noremap  <Left>   <Nop>
+noremap  <Right>  <Nop>
+inoremap <Up>     <Nop>
+inoremap <Down>   <Nop>
+inoremap <Left>   <Nop>
+inoremap <Right>  <Nop>
 
 " Make j and k move by virtual lines instead of physical lines, but only when
 " not used in the count mode (e.g. 3j). This is great when 'wrap' and
@@ -545,21 +572,21 @@ noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 
 " Jump to the previous/next tab.
-"noremap <silent> J gT
-"noremap <silent> K gt
+noremap <silent> J gT
+noremap <silent> K gt
 
 " Join lines by <Leader>+j because I use J to go to the previous tab.
-"noremap <Leader>j J
+noremap <Leader>j J
 
 " Join lines without producing any spaces. It works like gJ, but does not keep
 " the indentation whitespace.
 " Based on http://vi.stackexchange.com/a/440.
 function! s:JoinWithoutSpaces()
-	normal! gJ
-	" Remove any whitespace.
-	if matchstr(getline('.'), '\%' . col('.') . 'c.') =~ '\s'
-		normal! dw
-	endif
+    normal! gJ
+    " Remove any whitespace.
+    if matchstr(getline('.'), '\%' . col('.') . 'c.') =~ '\s'
+        normal! dw
+    endif
 endfunction
 noremap <silent> <Leader>J :call <SID>JoinWithoutSpaces()<CR>
 
@@ -578,38 +605,38 @@ inoremap <silent> <C-_> </<C-x><C-o><C-x>
 " Note: I do not use https://github.com/christoomey/vim-tmux-navigator because
 "       it does not work when vim is run over ssh.
 if exists('$TMUX')
-	function! s:TmuxOrSplitSwitch(wincmd, tmuxdir)
-		let previous_winnr = winnr()
-		silent! execute 'wincmd ' . a:wincmd
-		if previous_winnr == winnr()
-			call system('tmux select-pane -' . a:tmuxdir)
-			redraw!
-		endif
-	endfunction
+    function! s:TmuxOrSplitSwitch(wincmd, tmuxdir)
+        let previous_winnr = winnr()
+        silent! execute 'wincmd ' . a:wincmd
+        if previous_winnr == winnr()
+            call system('tmux select-pane -' . a:tmuxdir)
+            redraw!
+        endif
+    endfunction
 
-	let previous_title = substitute(system("tmux display-message -p '#{pane_title}'"), '\n', '', '')
-	let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti
-	let &t_te = "\<Esc>]2;" . previous_title . "\<Esc>\\" . &t_te
+    let previous_title = substitute(system("tmux display-message -p '#{pane_title}'"), '\n', '', '')
+    let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti
+    let &t_te = "\<Esc>]2;" . previous_title . "\<Esc>\\" . &t_te
 
-	nnoremap <silent> <C-h> :call <SID>TmuxOrSplitSwitch('h', 'L')<CR>
-	nnoremap <silent> <C-j> :call <SID>TmuxOrSplitSwitch('j', 'D')<CR>
-	nnoremap <silent> <C-k> :call <SID>TmuxOrSplitSwitch('k', 'U')<CR>
-	nnoremap <silent> <C-l> :call <SID>TmuxOrSplitSwitch('l', 'R')<CR>
+    nnoremap <silent> <C-h> :call <SID>TmuxOrSplitSwitch('h', 'L')<CR>
+    nnoremap <silent> <C-j> :call <SID>TmuxOrSplitSwitch('j', 'D')<CR>
+    nnoremap <silent> <C-k> :call <SID>TmuxOrSplitSwitch('k', 'U')<CR>
+    nnoremap <silent> <C-l> :call <SID>TmuxOrSplitSwitch('l', 'R')<CR>
 else
-	noremap <C-h> <C-w>h
-	noremap <C-j> <C-w>j
-	noremap <C-k> <C-w>k
-	noremap <C-l> <C-w>l
+    noremap <C-h> <C-w>h
+    noremap <C-j> <C-w>j
+    noremap <C-k> <C-w>k
+    noremap <C-l> <C-w>l
 endif
 
 " Open a link under the cursor in a web browser (similar to gx, but faster).
 let s:web_browser_path='/usr/bin/firefox'
 function! s:OpenLinkUnderCursor()
-	let curr_line = getline('.')
-	let link = matchstr(curr_line, '\(http\|https\|ftp\|file\)://[^ )"]*')
-	if link != ''
-		execute ':silent !' . s:web_browser_path . ' ' . '"' . link . '"'
-	endif
+    let curr_line = getline('.')
+    let link = matchstr(curr_line, '\(http\|https\|ftp\|file\)://[^ )"]*')
+    if link != ''
+        execute ':silent !' . s:web_browser_path . ' ' . '"' . link . '"'
+    endif
 endfunction
 nnoremap <silent> gl :call <SID>OpenLinkUnderCursor()<CR>
 
@@ -639,7 +666,7 @@ nnoremap <Leader>cc :%s/\<<C-r><C-w>\>/<C-r><C-w>
 vnoremap <Leader>cc y:%s/<C-r>"/<C-r>"
 
 " Replace tabs with spaces.
-nnoremap <Leader>rts :%s/	/    /g<CR>
+nnoremap <Leader>rts :%s/    /    /g<CR>
 
 " Remove ANSI color escape codes.
 nnoremap <Leader>rac :%s/<C-v><Esc>\[\(\d\{1,2}\(;\d\{1,2}\)\{0,2\}\)\?[m\|K]//g<CR>
@@ -647,14 +674,14 @@ nnoremap <Leader>rac :%s/<C-v><Esc>\[\(\d\{1,2}\(;\d\{1,2}\)\{0,2\}\)\?[m\|K]//g
 " Makes the current file executable.
 " Based on http://vim.wikia.com/wiki/Setting_file_attributes_without_reloading_a_buffer
 function! s:MakeFileExecutable()
-	let fname = expand('%:p')
-	checktime
-	execute 'au FileChangedShell ' . fname . ' :echo'
-	silent !chmod a+x %
-	checktime
-	execute 'au! FileChangedShell ' . fname
-	" Fix display issues in terminal Vim.
-	redraw!
+    let fname = expand('%:p')
+    checktime
+    execute 'au FileChangedShell ' . fname . ' :echo'
+    silent !chmod a+x %
+    checktime
+    execute 'au! FileChangedShell ' . fname
+    " Fix display issues in terminal Vim.
+    redraw!
 endfunction
 nnoremap <Leader>mfx :call <SID>MakeFileExecutable()<CR>
 
@@ -717,7 +744,7 @@ let g:netrw_sort_sequence='[\/]$'
 "-----------------------------
 " UltiSnips: Snippets for Vim.
 "-----------------------------
-let g:snips_author='Petr Zemek <s3rvac@gmail.com>'
+let g:snips_author='Steven ZHAO <ujnzxw@gmail.com>'
 let g:UltiSnipsEditSplit='vertical'
 let g:UltiSnipsEnableSnipMate='no'
 let g:UltiSnipsSnippetDirectories=[$HOME . '/.vim/snippets']
@@ -778,12 +805,12 @@ augroup trailing_whitespace
 au!
 " Automatically remove trailing whitespace when saving a file.
 function! s:RemoveTrailingWhitespace()
-	let pattern = '\\s\\+$'
-	if &ft ==# 'mail'
-		" Do not remove the space from the email signature marker ("-- \n").
-		let pattern = '\\(^--\\)\\@<!' . pattern
-	endif
-	call setline(1, map(getline(1, '$'), 'substitute(v:val, "' . pattern . '", "", "")'))
+    let pattern = '\\s\\+$'
+    if &ft ==# 'mail'
+        " Do not remove the space from the email signature marker ("-- \n").
+        let pattern = '\\(^--\\)\\@<!' . pattern
+    endif
+    call setline(1, map(getline(1, '$'), 'substitute(v:val, "' . pattern . '", "", "")'))
 endfunction
 au BufWritePre * :if !&bin | call s:RemoveTrailingWhitespace()
 " Add a new command :W that can be used to write a file without removing
@@ -817,9 +844,9 @@ au!
 " If there is a Makefile in the current working directory,
 " use the `make` command instead of a concrete program.
 function! s:SetMakeprg()
-	if filereadable('Makefile') || filereadable('makefile')
-		set makeprg='make'
-	endif
+    if filereadable('Makefile') || filereadable('makefile')
+        set makeprg='make'
+    endif
 endfunction
 au FileType * call s:SetMakeprg()
 augroup end
@@ -841,96 +868,96 @@ au FileType c,cpp nnoremap <buffer> <Leader>Inc /^#include "<CR>:nohlsearch<CR>:
 
 " Open both a .c|cpp|cc file and the corresponding .h file in a new tab.
 function! s:GetCFile(base_name)
-	" a:base_name should end with a dot (".")
-	if filereadable(a:base_name . 'cc')
-		return a:base_name . 'cc'
-	elseif filereadable(a:base_name . 'cpp')
-		return a:base_name . 'cpp'
-	else
-		return a:base_name . 'c'
-	endif
+    " a:base_name should end with a dot (".")
+    if filereadable(a:base_name . 'cc')
+        return a:base_name . 'cc'
+    elseif filereadable(a:base_name . 'cpp')
+        return a:base_name . 'cpp'
+    else
+        return a:base_name . 'c'
+    endif
 endfunction
 function! s:OpenCAndHInNewTab(base_name)
-	if a:base_name =~ '\.h$'
-		let h_file = a:base_name
-		let c_file = s:GetCFile(substitute(a:base_name, '\\.h$', '.', ''))
-	elseif a:base_name =~ '\.cc$'
-		let h_file = substitute(a:base_name, '\.cc$', '.h', '')
-		let c_file = a:base_name
-	elseif a:base_name =~ '\.cpp$'
-		let h_file = substitute(a:base_name, '\.cpp$', '.h', '')
-		let c_file = a:base_name
-	elseif a:base_name =~ '\.c$'
-		let h_file = substitute(a:base_name, '\.c$', '.h', '')
-		let c_file = a:base_name
-	elseif a:base_name =~ '\.$'
-		let h_file = a:base_name . 'h'
-		let c_file = s:GetCFile(a:base_name)
-	else
-		let h_file = a:base_name . '.h'
-		let c_file = s:GetCFile(a:base_name . '.')
-	endif
-	if filereadable(c_file)
-		if filereadable(h_file)
-			execute 'tabnew ' . c_file
-			execute 'vsplit ' . h_file
-		else
-			execute 'tabnew ' . c_file
-		endif
-	elseif filereadable(h_file)
-		execute 'tabnew ' . h_file
-	else
-		echo 'No file to open.'
-	endif
+    if a:base_name =~ '\.h$'
+        let h_file = a:base_name
+        let c_file = s:GetCFile(substitute(a:base_name, '\\.h$', '.', ''))
+    elseif a:base_name =~ '\.cc$'
+        let h_file = substitute(a:base_name, '\.cc$', '.h', '')
+        let c_file = a:base_name
+    elseif a:base_name =~ '\.cpp$'
+        let h_file = substitute(a:base_name, '\.cpp$', '.h', '')
+        let c_file = a:base_name
+    elseif a:base_name =~ '\.c$'
+        let h_file = substitute(a:base_name, '\.c$', '.h', '')
+        let c_file = a:base_name
+    elseif a:base_name =~ '\.$'
+        let h_file = a:base_name . 'h'
+        let c_file = s:GetCFile(a:base_name)
+    else
+        let h_file = a:base_name . '.h'
+        let c_file = s:GetCFile(a:base_name . '.')
+    endif
+    if filereadable(c_file)
+        if filereadable(h_file)
+            execute 'tabnew ' . c_file
+            execute 'vsplit ' . h_file
+        else
+            execute 'tabnew ' . c_file
+        endif
+    elseif filereadable(h_file)
+        execute 'tabnew ' . h_file
+    else
+        echo 'No file to open.'
+    endif
 endfunction
 au FileType c,cpp command! -nargs=1 -complete=file TN :call s:OpenCAndHInNewTab(<q-args>)
 
 " Splits the current window by showing the .{c,cc,cpp} file on the left-hand
 " side and the corresponding .h file on the right-hand side.
 function! s:SplitCOrHFile()
-	if bufname('') =~ '\.\(cpp\|cc\|c\)$'
-		let c_file = bufname('')
-		let h_file = substitute(bufname(''), '\.\(cpp\|cc\|c\)$', '.h', '')
-		if filereadable(h_file)
-			execute 'edit ' . c_file
-			execute 'vsplit ' . h_file
-		else
-			echo 'The corresponding .h file does not exist.'
-		endif
-	elseif bufname('') =~ '\.h$'
-		let h_file = bufname('')
-		let c_file = s:GetCFile(substitute(bufname(''), '\.h$', '.', ''))
-		if filereadable(c_file)
-			execute 'edit ' . c_file
-			execute 'vsplit ' . h_file
-		else
-			echo 'The corresponding .{c,cc,cpp} file does not exist.'
-		endif
-	else
-		echo 'There is no corresponding source file.'
-	endif
+    if bufname('') =~ '\.\(cpp\|cc\|c\)$'
+        let c_file = bufname('')
+        let h_file = substitute(bufname(''), '\.\(cpp\|cc\|c\)$', '.h', '')
+        if filereadable(h_file)
+            execute 'edit ' . c_file
+            execute 'vsplit ' . h_file
+        else
+            echo 'The corresponding .h file does not exist.'
+        endif
+    elseif bufname('') =~ '\.h$'
+        let h_file = bufname('')
+        let c_file = s:GetCFile(substitute(bufname(''), '\.h$', '.', ''))
+        if filereadable(c_file)
+            execute 'edit ' . c_file
+            execute 'vsplit ' . h_file
+        else
+            echo 'The corresponding .{c,cc,cpp} file does not exist.'
+        endif
+    else
+        echo 'There is no corresponding source file.'
+    endif
 endfunction
 au FileType c,cpp nnoremap <buffer> <Leader>as :call <SID>SplitCOrHFile()<CR>
 
 " Alternates between a .{c,cc,cpp} file and a .h file.
 function! s:AlternateCOrHFile()
-	if bufname('') =~ '\.\(cpp\|cc\|c\)$'
-		let h_file = substitute(bufname(''), '\.\(cpp\|cc\|c\)$', '.h', '')
-		if filereadable(h_file)
-			execute 'edit ' . h_file
-		else
-			echo 'The corresponding .h file does not exist.'
-		endif
-	elseif bufname('') =~ '\.h$'
-		let c_file = s:GetCFile(substitute(bufname(''), '\.h$', '.', ''))
-		if filereadable(c_file)
-			execute 'edit ' . c_file
-		else
-			echo 'The corresponding .{c,cc,cpp} file does not exist.'
-		endif
-	else
-		echo 'There is no corresponding source file.'
-	endif
+    if bufname('') =~ '\.\(cpp\|cc\|c\)$'
+        let h_file = substitute(bufname(''), '\.\(cpp\|cc\|c\)$', '.h', '')
+        if filereadable(h_file)
+            execute 'edit ' . h_file
+        else
+            echo 'The corresponding .h file does not exist.'
+        endif
+    elseif bufname('') =~ '\.h$'
+        let c_file = s:GetCFile(substitute(bufname(''), '\.h$', '.', ''))
+        if filereadable(c_file)
+            execute 'edit ' . c_file
+        else
+            echo 'The corresponding .{c,cc,cpp} file does not exist.'
+        endif
+    else
+        echo 'There is no corresponding source file.'
+    endif
 endfunction
 au FileType c,cpp nnoremap <buffer> <Leader>ac :call <SID>AlternateCOrHFile()<CR>
 
@@ -1000,13 +1027,13 @@ au FileType python nnoremap <buffer> <F10> :w<CR>:!clear; python %<CR>
 " Splits the current window by showing the corresponding test file on the
 " right-hand side.
 function! s:ShowPythonTestsInSplit()
-	" For e.g. main_package/subpackage/module.py, the tests are in
-	" tests/subpackage/module_tests.py (a convention that I use in my
-	" projects).
-	let module_rel_path = expand('%')
-	let tests_rel_path = substitute(module_rel_path, '\.\py$', '_tests.py', '')
-	let tests_rel_path = substitute(tests_rel_path, '^[^/]*/', 'tests/', '')
-	execute 'vsplit ' . tests_rel_path
+    " For e.g. main_package/subpackage/module.py, the tests are in
+    " tests/subpackage/module_tests.py (a convention that I use in my
+    " projects).
+    let module_rel_path = expand('%')
+    let tests_rel_path = substitute(module_rel_path, '\.\py$', '_tests.py', '')
+    let tests_rel_path = substitute(tests_rel_path, '^[^/]*/', 'tests/', '')
+    execute 'vsplit ' . tests_rel_path
 endfunction
 " The mapping is mimicking <Leader>as for c,cpp.
 au FileType python nnoremap <buffer> <Leader>as :call <SID>ShowPythonTestsInSplit()<CR>
@@ -1103,11 +1130,11 @@ augroup firefox_its_all_text
 au!
 let s:opened_file_path = expand('%:p')
 if s:opened_file_path =~ '\.mozilla/firefox/'
-	" Enable Czech spell checking by default.
-	au BufRead,BufNewFile *.txt setl spell
-	au BufRead,BufNewFile *.txt setl spelllang=cs
+    " Enable Czech spell checking by default.
+    au BufRead,BufNewFile *.txt setl spell
+    au BufRead,BufNewFile *.txt setl spelllang=cs
 
-	au BufRead,BufNewFile *.txt setl ft=html
+    au BufRead,BufNewFile *.txt setl ft=html
 endif
 augroup end
 
@@ -1137,5 +1164,5 @@ nnoremap :Tn :tabnew
 
 " Source a local configuration file if available.
 if filereadable(expand('~/.vimrc.local'))
-	source ~/.vimrc.local
+    source ~/.vimrc.local
 endif
