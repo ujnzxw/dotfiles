@@ -1,3 +1,9 @@
+"               _
+"        _   _ (_)_ __  ______  ____      __
+"       | | | || | '_ \|_  /\ \/ /\ \ /\ / /
+"       | |_| || | | | |/ /  >  <  \ V  V /
+"        \__,_|/ |_| |_/___|/_/\_\  \_/\_/
+"            |__/
 "----------------------------------------------
 " Vundle Settings
 "----------------------------------------------
@@ -16,9 +22,6 @@ Plugin 'VundleVim/Vundle.vim'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 
-"----------------------
-" plugin on GitHub repo
-"----------------------
 Plugin 'tpope/vim-fugitive'
 " An extensible & universal comment vim-plugin
 Plugin 'tomtom/tcomment_vim'
@@ -26,7 +29,9 @@ Plugin 'tomtom/tcomment_vim'
 Plugin 'iamcco/markdown-preview.vim'
 
 
+"------------------------------------------
 " Nerdtree - A tree explorer plugin for vim
+"------------------------------------------
 Plugin 'scrooloose/nerdtree'
 " NerdTree {
     if isdirectory(expand("~/.vim/bundle/nerdtree"))
@@ -47,8 +52,11 @@ Plugin 'scrooloose/nerdtree'
     endif
 " }
 
+
+"---------------------------------------------
 " TagBar - Vim plugin that displays tags in a window
 "        - ordered by scope http://majutsushi.github.com/tagbar/
+"---------------------------------------------
 Plugin 'majutsushi/tagbar'
 " TagBar {
     if isdirectory(expand("~/.vim/bundle/tagbar"))
@@ -61,60 +69,145 @@ Plugin 'majutsushi/tagbar'
     endif
 " }
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"---------------------------------------------
 " vim-airline - lean & mean status/tabline
 " for vim that's light as air
+"---------------------------------------------
 
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 
-"----------airline settings--------------
-if !exists('g:airline_symbols')
+" Airline {
+    if !exists('g:airline_symbols')
 	let g:airline_symbols = {}
-endif
-let g:airline_symbols.space = "\ua0"
-" let g:airline_exclude_filename = []
-" Must be set to 1 when install powerline fonts."
-let g:airline_powerline_fonts=1"
-let Powerline_symbols='fancy'
-let g:bufferline_echo=0
-set laststatus=2
-set t_Co=256
-set fillchars+=stl:\ ,stlnc:\
-let g:airline_theme="luna"
+    endif
+    let g:airline_symbols.space = "\ua0"
+    " let g:airline_exclude_filename = []
+    " Must be set to 1 when install powerline fonts."
+    let g:airline_powerline_fonts=1"
+    let Powerline_symbols='fancy'
+    let g:bufferline_echo=0
+    set laststatus=2
+    set t_Co=256
+    set fillchars+=stl:\ ,stlnc:\
+    let g:airline_theme="luna"
 
-" tabline function
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_nr_show = 1
+    " tabline function
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#tabline#buffer_nr_show = 1
 
-" shotcut for Buffer switch"
-nnoremap <C-N> :bn<CR>
-nnoremap <C-P> :bp<CR>
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " shotcut for Buffer switch"
+    nnoremap <C-N> :bn<CR>
+    nnoremap <C-P> :bp<CR>
+" }
 
-"----------------------
-" plugin from http://vim-scripts.org/vim/scripts.html
-"----------------------
-"Plugin 'L9'
 
+"---------------------------------------------
+" Shougo/neocomplete.vim Plugin
+"---------------------------------------------
+Plugin 'Shougo/neocomplete.vim'
+" Neocomplete {
+    let g:acp_enableAtStartup = 0
+    " Use neocomplete.
+    let g:neocomplete#enable_at_startup = 1
+    " Use smartcase.
+    let g:neocomplete#enable_smart_case = 1
+    " Set minimum syntax keyword length.
+    let g:neocomplete#sources#syntax#min_keyword_length = 3
+    let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+
+    " Define dictionary.
+    let g:neocomplete#sources#dictionary#dictionaries = {
+        \ 'default' : '',
+        \ 'vimshell' : $HOME.'/.vimshell_hist',
+        \ 'scheme' : $HOME.'/.gosh_completions'
+            \ }
+
+    " Define keyword.
+    if !exists('g:neocomplete#keyword_patterns')
+        let g:neocomplete#keyword_patterns = {}
+    endif
+    let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+    " Plugin key-mappings.
+    inoremap <expr><C-g>     neocomplete#undo_completion()
+    inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+    " Recommended key-mappings.
+    " <CR>: close popup and save indent.
+    inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+    function! s:my_cr_function()
+      return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+      " For no inserting <CR> key.
+      "return pumvisible() ? "\<C-y>" : "\<CR>"
+    endfunction
+    " <TAB>: completion.
+    inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+    " <C-h>, <BS>: close popup and delete backword char.
+    inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+    inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+    " Close popup by <Space>.
+    "inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+
+    " AutoComplPop like behavior.
+    "let g:neocomplete#enable_auto_select = 1
+
+    " Shell like behavior(not recommended).
+    "set completeopt+=longest
+    "let g:neocomplete#enable_auto_select = 1
+    "let g:neocomplete#disable_auto_complete = 1
+    "inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+
+    " Enable omni completion.
+    autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+    " Enable heavy omni completion.
+    if !exists('g:neocomplete#sources#omni#input_patterns')
+      let g:neocomplete#sources#omni#input_patterns = {}
+    endif
+    "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+    "let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+    "let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+" }
+
+
+"---------------------------------------------
+" indentLine Plugin
+"---------------------------------------------
+Plugin 'Yggdroot/indentLine'
+
+" Yggdroot/indentLine {
+    let g:indentLine_enabled = 1
+    let g:indentLine_concealcursor = 'inc'
+    let g:indentLine_conceallevel = 2
+    map <leader>il :IndentLinesToggle<CR>
+"}
+
+"---------------------------------------------
 " TagList Plugin
-Bundle 'taglist.vim'
-let Tlist_Ctags_Cmd='ctags'
-let Tlist_Show_One_File=1               " don't display more than one files tag.
-let Tlist_WinWidt =28                   " taglist width settings
-let Tlist_Exit_OnlyWindow=1             " exit when taglist window is the last one
-"let Tlist_Use_Right_Window=1            " display taglist window on right
-let Tlist_Use_Left_Windo =1             " display taglist window on left
+"---------------------------------------------
+Plugin 'taglist.vim'
+" Taglist {
+    let Tlist_Ctags_Cmd='ctags'
+    let Tlist_Show_One_File=1               " don't display more than one files tag.
+    let Tlist_WinWidt =28                   " taglist width settings
+    let Tlist_Exit_OnlyWindow=1             " exit when taglist window is the last one
+    let Tlist_Use_Right_Window=1            " display taglist window on right
+    let Tlist_Use_Left_Window=1             " display taglist window on left
+" }
 
-
-"----------------------
+""""""""""""""""""""""""""""""""""
 " Git plugin not hosted on GitHub
-"----------------------
+""""""""""""""""""""""""""""""""""
 "Plugin 'git://git.wincent.com/command-t.git'
 
-"----------------------
+""""""""""""""""""""""""""""""""""
 " git repos on your local machine (i.e. when working on your own plugin)
-"----------------------
+""""""""""""""""""""""""""""""""""
 "Plugin 'file:///home/gmarik/path/to/plugin'
 
 "----------------------
@@ -122,15 +215,22 @@ let Tlist_Use_Left_Windo =1             " display taglist window on left
 "----------------------
 " Pass the path to set the runtimepath properly.
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
+" Install L9 and avoid a Naming conflict if you've already installed a different version somewhere else.
 "Plugin 'ascenator/L9', {'name': 'newL9'}
 
-"----------------------
+""""""""""""""""""""""""""""""""""
 " All of your Plugins must be added before the following line
-"----------------------
+""""""""""""""""""""""""""""""""""
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+
+
+
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 "
