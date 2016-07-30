@@ -17,8 +17,9 @@
 #   SETUP PARAMETERS      *
 #**************************
 ROOT=$( cd "$( dirname "$0" )" && pwd )
+
 app_name='dotfiles'
-[ -z "$APP_PATH" ] && APP_PATH=$ROOT
+[ -z "$APP_PATH" ] && APP_PATH="$HOME/.ujnzxw-dotfiles"
 [ -z "$REPO_URI" ] && REPO_URI='https://github.com/ujnzxw/dotfiles.git'
 [ -z "$VUNDLE_URI" ] && VUNDLE_URI="https://github.com/gmarik/vundle.git"
 debug_mode='0'
