@@ -539,8 +539,10 @@ noremap gV `[v`]
 noremap <silent> <Space> :silent nohlsearch<CR>
 
 " Insert the contents of the clipboard.
-nnoremap <silent> <Leader>P :set paste<CR>"+]P:set nopaste<CR>
-nnoremap <silent> <Leader>p :set paste<CR>"+]p:set nopaste<CR>
+nnoremap <silent> <Leader>P :set nopaste<CR>
+"+]P:set nopaste<CR>
+nnoremap <silent> <Leader>p :set paste<CR>
+"+]p:set nopaste<CR>
 vnoremap          <Leader>p "+p
 
 " Copy the selected text into the clipboard.
