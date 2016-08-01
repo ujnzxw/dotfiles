@@ -25,8 +25,59 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 " An extensible & universal comment vim-plugin
 Plugin 'tomtom/tcomment_vim'
-" Real-time markdown preview plugin for vim
+
+"------------------------------------------
+" markdown-preview - Real-time markdown preview plugin for vim
+"------------------------------------------
 Plugin 'iamcco/markdown-preview.vim'
+" markdown-preview {
+    "path to the chrome or the command to open chrome(or other modern browsers)
+    let g:mkdp_path_to_chrome = "google-chrome"
+
+    " set to 1, the vim will open the preview window once enter the markdown
+    " buffer
+    let g:mkdp_auto_start = 0
+
+    " set to 1, the vim will auto open preview window when you edit the
+    " markdown file
+    let g:mkdp_auto_open = 0
+
+    " set to 1, the vim will auto close current preview window when change
+    " from markdown buffer to another buffer
+    let g:mkdp_auto_close = 1
+
+    " set to 1, the vim will just refresh markdown when save the buffer or
+    " leave from insert mode, default 0 is auto refresh markdown as you edit or
+    " move the cursor
+    let g:mkdp_refresh_slow = 0
+
+    " set to 1, the MarkdownPreview command can be use for all files,
+    " by default it just can be use in markdown file
+    let g:mkdp_command_for_global = 0
+
+    " Key Mapping
+    "if isdirectory(expand("~/.vim/bundle/markdown-preview.vim"))
+        nmap <silent> <Leader>m <Plug>MarkdownPreview        " for normal mode
+        imap <silent> <Leader>m <Plug>MarkdownPreview        " for insert mode
+        nmap <silent> <Leader>M <Plug>StopMarkdownPreview    " for normal mode
+        imap <silent> <Leader>M <Plug>StopMarkdownPreview    " for insert mode
+    "endif
+    " F2: Toggle highlighting of characters exceeding textwidth.
+    "<C-m>: Toggle MarkdownPreview
+    let g:start_markdown_preview = 0
+    function! s:ToggleMarkdownPreview()
+        if g:start_markdown_preview == 0
+            let g:start_markdown_preview = 1
+            execute "normal \<Plug>MarkdownPreview"
+            echo 'Enable MarkdownPreview...'
+        else
+            let g:start_markdown_preview = 0
+            execute 'normal \<Plug>StopMarkdownPreview'
+            echo 'Disable MarkdownPreview...'
+        endif
+    endfunction
+    nnoremap <silent> <C-m> :call <SID>ToggleMarkdownPreview()<CR>
+" }
 
 
 "------------------------------------------
@@ -199,6 +250,15 @@ Plugin 'taglist.vim'
     let Tlist_Use_Right_Window=1            " display taglist window on right
     let Tlist_Use_Left_Window=1             " display taglist window on left
 " }
+
+
+"---------------------------------------------
+" YouCompleteMe Plugin
+"---------------------------------------------
+Plugin 'Valloric/YouCompleteMe'
+" YouCompleteMe {
+
+"}
 
 """"""""""""""""""""""""""""""""""
 " Git plugin not hosted on GitHub
