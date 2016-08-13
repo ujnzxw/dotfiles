@@ -61,7 +61,7 @@ Pip is a tool for installing and managing Python packages.
 License
 -------
 
-Copyright (c) 2016 ujnzxw<ujnzxw@gmail.com>
+Copyright (c) 2016 ujnzxw <ujnzxw@gmail.com>
 
 Distributed under the MIT license. See the LICENSE file for more details.
 
