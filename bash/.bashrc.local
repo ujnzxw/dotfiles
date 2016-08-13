@@ -14,6 +14,7 @@ export PATH=${JAVA_HOME}/bin:$PATH
 alias work='cd /media/xzhao027/Documents/Work'
 alias fed='cd /media/xzhao027/Documents/Work/Feature/12.134-SFED'
 alias csf='cd /media/xzhao027/Documents/Work/CSF'
+alias doc='cd /media/xzhao027/Documents/Meterials'
 
 # proxy settings
 #if type set-proxy > /dev/null 2>&1; then

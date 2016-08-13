@@ -255,7 +255,8 @@ Plugin 'taglist.vim'
 "---------------------------------------------
 " YouCompleteMe Plugin
 "---------------------------------------------
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/ycmd'
+"Plugin 'Valloric/YouCompleteMe'
 " YouCompleteMe {
 
 "}
