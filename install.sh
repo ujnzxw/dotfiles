@@ -22,7 +22,8 @@ app_name='dotfiles'
 [ -z "$APP_PATH" ] && APP_PATH="$HOME/.ujnzxw-dotfiles"
 [ -z "$REPO_URI" ] && REPO_URI='https://github.com/ujnzxw/dotfiles.git'
 [ -z "$VUNDLE_URI" ] && VUNDLE_URI="https://github.com/gmarik/vundle.git"
-debug_mode='0'
+[ -z "$REPO_BRANCH" ] && REPO_BRANCH="master"
+debug_mode='1'
 
 #**************************
 #   BASIC FUNCTIONS       *
@@ -191,4 +192,4 @@ setup_vundle    "$APP_PATH/vim/.vimrc.plugin"
 
 msg             "\nThanks for installing $app_name."
 msg             "© `date +%Y` https://github.com/ujnzxw"
- 
+
