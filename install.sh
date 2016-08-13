@@ -88,20 +88,18 @@ LN()
     if [ -f ${tar_file} ]; then
         # chcek if the file is a link file
         if [ -L ${tar_file} ]; then
-            echo "Link file exists! Remove the link..."
-            echo "Run \"rm ${tar_file}\""
+            error "Link file exists! Remove the link..."
+            error "Run \"rm ${tar_file}\""
             rm ${tar_file}
         else
-            echo "File exists! Make a backup..."
-            echo "Run \"mv ${tar_file} ${tar_file}.bk.dotfiles\""
+            error "File exists! Make a backup..."
+            error "Run \"mv ${tar_file} ${tar_file}.bk.dotfiles\""
             mv ${tar_file} ${tar_file}.bk.dotfiles
         fi
     fi
 
     # run link cmd
-    echo "----------------------"
-    echo "Make a link: ${tar_file} -> ${src_file}"
-    echo "----------------------"
+    message "Make a link: ${tar_file} -> ${src_file}"
     ln ${src_file} -sf ${tar_file}
 }
 
