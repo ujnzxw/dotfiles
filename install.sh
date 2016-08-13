@@ -187,7 +187,7 @@ sync_repo       "$HOME/.vim/bundle/vundle" \
                 "master" \
                 "vundle"
 
-setup_vundle    "$APP_PATH/.vimrc.plugin"
+setup_vundle    "$APP_PATH/vim/.vimrc.plugin"
 
 msg             "\nThanks for installing $app_name."
 msg             "© `date +%Y` https://github.com/ujnzxw"
