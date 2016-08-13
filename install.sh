@@ -43,6 +43,11 @@ error() {
     exit 1
 }
 
+warning() {
+    msg "\33[31m[!]\33[0m ${1}${2}"
+}
+
+
 debug() {
     if [ "$debug_mode" -eq '1' ] && [ "$ret" -gt '1' ]; then
         msg "ERROR in func \"${FUNCNAME[$i+1]}\" on line ${BASH_LINENO[$i+1]}."
@@ -88,12 +93,12 @@ LN()
     if [ -f ${tar_file} ]; then
         # chcek if the file is a link file
         if [ -L ${tar_file} ]; then
-            error "Link file exists! Remove the link..."
-            error "Run \"rm ${tar_file}\""
+            warning "Link file exists! Remove the link..."
+            warning "Run \"rm ${tar_file}\""
             rm ${tar_file}
         else
-            error "File exists! Make a backup..."
-            error "Run \"mv ${tar_file} ${tar_file}.bk.dotfiles\""
+            warning "File exists! Make a backup..."
+            warning "Run \"mv ${tar_file} ${tar_file}.bk.dotfiles\""
             mv ${tar_file} ${tar_file}.bk.dotfiles
         fi
     fi
