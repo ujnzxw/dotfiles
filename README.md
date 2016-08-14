@@ -10,12 +10,14 @@ The easiest way to install ujnzxw-dotfiles is to use our automatic installer by 
 *Requires Git 1.7+ and Vim 7.3+*
 
 ```
+export APP_PATH=/your/Install/path (Default path is: ~/.ujnzxw-dotfiles)
 curl https://raw.githubusercontent.com/ujnzxw/dotfiles/master/install.sh -L > ujnzxw-dotfiles.sh && sh ujnzxw-dotfiles.sh
 ```
 If you have a bash-compatible shell you can run the script directly:
 
 ```
- sh <(curl https://raw.githubusercontent.com/ujnzxw/dotfiles/master/install.sh -L)
+export APP_PATH=/your/Install/path (Default path is: ~/.ujnzxw-dotfiles)
+sh <(curl https://raw.githubusercontent.com/ujnzxw/dotfiles/master/install.sh -L)
 ```
 
 
