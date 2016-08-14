@@ -44,7 +44,7 @@ error() {
 }
 
 warning() {
-    msg "\33[31m[!]\33[0m ${1}${2}"
+    msg "\33[33m[!]\33[0m ${1}${2}"
 }
 
 
@@ -74,6 +74,15 @@ program_must_exist() {
         error "You must have '$1' installed to continue."
     fi
 }
+lnif()
+{
+    if [ -e "$1" ]; then
+        ln -sf "$1" "$2"
+    fi
+
+    ret="$?"
+    debug
+}
 
 # @function: Create a soft link
 # @Param:    src_file - the source file
@@ -82,12 +91,10 @@ program_must_exist() {
 LN()
 {
     # check parms
-    if [ $# -ne 2 ]; then
-        echo "Must input 2 parms for func LN()" && exit 1
-    fi
+    [ $# -ne 2 ] && echo "Must input 2 parms for func LN()" && exit 1
 
     src_file=${1}
-    tar_file=$2
+    tar_file=${2}
 
     # check if the file is already exist
     if [ -f ${tar_file} ]; then
@@ -105,7 +112,10 @@ LN()
 
     # run link cmd
     message "Make a link: ${tar_file} -> ${src_file}"
-    ln ${src_file} -sf ${tar_file}
+    lnif "$src_file" "$tar_file"
+
+    ret="$?"
+    debug
 }
 
 sync_repo() {
