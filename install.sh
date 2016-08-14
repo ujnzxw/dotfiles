@@ -1,16 +1,16 @@
 #!/bin/bash
 #
-#-----------------------------------------------------------
-# Author       : ujnzxw - zhaoxiaowei.cn@hotmail.com
-# Description  : install the dotfiles smoothly
-# Date         : 2016-07-11
-# Note         : don't move this script singlly.
-#              : please run this script in the current path
+#           _
+#    _   _ (_)_ __  ______  ____      __
+#   | | | || | '_ \|_  /\ \/ /\ \ /\ / /
+#   | |_| || | | | |/ /  >  <  \ V  V /
+#    \__,_|/ |_| |_/___|/_/\_\  \_/\_/
+#        |__/
+#
 #-----------------------------------------------------------
 
 #***********************************************************
 # Before run this script, please read README.md            *
-# in ./app-install first                                   *
 #***********************************************************
 
 #**************************
@@ -19,42 +19,48 @@
 ROOT=$( cd "$( dirname "$0" )" && pwd )
 
 app_name='dotfiles'
-[ -z "$APP_PATH" ] && APP_PATH="$HOME/.ujnzxw-dotfiles"
-[ -z "$REPO_URI" ] && REPO_URI='https://github.com/ujnzxw/dotfiles.git'
-[ -z "$VUNDLE_URI" ] && VUNDLE_URI="https://github.com/gmarik/vundle.git"
+[ -z "$APP_PATH" ]    && APP_PATH="$HOME/.ujnzxw-dotfiles"
+[ -z "$REPO_URI" ]    && REPO_URI='https://github.com/ujnzxw/dotfiles.git'
+[ -z "$VUNDLE_URI" ]  && VUNDLE_URI="https://github.com/gmarik/vundle.git"
 [ -z "$REPO_BRANCH" ] && REPO_BRANCH="master"
-debug_mode='1'
+debug_mode='0'
 
 #**************************
 #   BASIC FUNCTIONS       *
 #**************************
-msg() {
+msg()
+{
     printf '%b\n' "$1" >&2
 }
 
-success() {
+success()
+{
     if [ "$ret" -eq '0' ]; then
         msg "\33[32m[✔]\33[0m ${1}${2}"
     fi
 }
 
-error() {
+error()
+{
     msg "\33[31m[✘]\33[0m ${1}${2}"
     exit 1
 }
 
-warning() {
+warning()
+{
     msg "\33[33m[!]\33[0m ${1}${2}"
 }
 
 
-debug() {
+debug()
+{
     if [ "$debug_mode" -eq '1' ] && [ "$ret" -gt '1' ]; then
         msg "ERROR in func \"${FUNCNAME[$i+1]}\" on line ${BASH_LINENO[$i+1]}."
     fi
 }
 
-program_exists() {
+program_exists()
+{
     local ret='0'
     command -v $1 >/dev/null 2>&1 || { local ret='1'; }
 
@@ -66,7 +72,8 @@ program_exists() {
     return 0
 }
 
-program_must_exist() {
+program_must_exist()
+{
     program_exists $1
 
     # throw error on non-zero return value
@@ -74,10 +81,12 @@ program_must_exist() {
         error "You must have '$1' installed to continue."
     fi
 }
+
 lnif()
 {
     if [ -e "$1" ]; then
-        ln -sf "$1" "$2"
+        [ -d "$1" ] && `ln -sf -d "$1" "$2"`
+        [ -f "$1" ] && `ln -sf "$1" "$2"`
     fi
 
     ret="$?"
@@ -96,22 +105,22 @@ LN()
     src_file=${1}
     tar_file=${2}
 
-    # check if the file is already exist
-    if [ -f ${tar_file} ]; then
+    # check if the file/path is already existed
+    if [ -f ${tar_file} ] || [ -d ${tar_file} ]; then
         # chcek if the file is a link file
         if [ -L ${tar_file} ]; then
-            warning "Link file exists! Remove the link..."
+            warning "Link file/path ${tar_file} existed! Remove the link..."
             warning "Run \"rm ${tar_file}\""
             rm ${tar_file}
         else
-            warning "File exists! Make a backup..."
+            warning "File/path existed! Make a backup..."
             warning "Run \"mv ${tar_file} ${tar_file}.bk.dotfiles\""
             mv ${tar_file} ${tar_file}.bk.dotfiles
         fi
     fi
 
     # run link cmd
-    message "Make a link: ${tar_file} -> ${src_file}"
+    warning "Make a link: ${tar_file} -> ${src_file}"
     lnif "$src_file" "$tar_file"
 
     ret="$?"
@@ -140,7 +149,8 @@ sync_repo() {
     debug
 }
 
-setup_vundle() {
+setup_vundle()
+{
     local system_shell="$SHELL"
     export SHELL='/bin/sh'
 
@@ -158,7 +168,8 @@ setup_vundle() {
     debug
 }
 
-create_symlinks() {
+create_symlinks()
+{
     local source_path="$1"
     local target_path="$2"
 
@@ -176,9 +187,10 @@ create_symlinks() {
     LN "$source_path/tmux/.tmux-powerlinerc"   "$target_path/.tmux-powerlinerc"
 
     ret="$?"
-    success "Setting up vim symlinks."
+    success "Setting up dotfiles symlinks successfully."
     debug
 }
+
 #**************************
 #           MAIN          *
 #**************************
