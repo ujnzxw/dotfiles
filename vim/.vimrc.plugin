@@ -26,9 +26,9 @@ Plugin 'tpope/vim-fugitive'
 " An extensible & universal comment vim-plugin
 Plugin 'tomtom/tcomment_vim'
 
-"------------------------------------------
+"------------------------------------------------------------------------------
 " markdown-preview - Real-time markdown preview plugin for vim
-"------------------------------------------
+"------------------------------------------------------------------------------
 Plugin 'iamcco/markdown-preview.vim'
 " markdown-preview {
     "path to the chrome or the command to open chrome(or other modern browsers)
@@ -80,9 +80,9 @@ Plugin 'iamcco/markdown-preview.vim'
 " }
 
 
-"------------------------------------------
+"------------------------------------------------------------------------------
 " Nerdtree - A tree explorer plugin for vim
-"------------------------------------------
+"------------------------------------------------------------------------------
 Plugin 'scrooloose/nerdtree'
 " NerdTree {
     if isdirectory(expand("~/.vim/bundle/nerdtree"))
@@ -104,10 +104,10 @@ Plugin 'scrooloose/nerdtree'
 " }
 
 
-"---------------------------------------------
+"------------------------------------------------------------------------------
 " TagBar - Vim plugin that displays tags in a window
 "        - ordered by scope http://majutsushi.github.com/tagbar/
-"---------------------------------------------
+"------------------------------------------------------------------------------
 Plugin 'majutsushi/tagbar'
 " TagBar {
     if isdirectory(expand("~/.vim/bundle/tagbar"))
@@ -120,17 +120,17 @@ Plugin 'majutsushi/tagbar'
     endif
 " }
 
-"---------------------------------------------
+"------------------------------------------------------------------------------
 " vim-airline - lean & mean status/tabline
 " for vim that's light as air
-"---------------------------------------------
+"------------------------------------------------------------------------------
 
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 
 " Airline {
     if !exists('g:airline_symbols')
-	let g:airline_symbols = {}
+    let g:airline_symbols = {}
     endif
     let g:airline_symbols.space = "\ua0"
     " let g:airline_exclude_filename = []
@@ -153,9 +153,9 @@ Plugin 'vim-airline/vim-airline-themes'
 " }
 
 
-"---------------------------------------------
+"------------------------------------------------------------------------------
 " Shougo/neocomplete.vim Plugin
-"---------------------------------------------
+"------------------------------------------------------------------------------
 Plugin 'Shougo/neocomplete.vim'
 " Neocomplete {
     let g:acp_enableAtStartup = 0
@@ -226,9 +226,9 @@ Plugin 'Shougo/neocomplete.vim'
 " }
 
 
-"---------------------------------------------
+"------------------------------------------------------------------------------
 " indentLine Plugin
-"---------------------------------------------
+"------------------------------------------------------------------------------
 Plugin 'Yggdroot/indentLine'
 
 " Yggdroot/indentLine {
@@ -252,36 +252,38 @@ Plugin 'taglist.vim'
 " }
 
 
-"---------------------------------------------
+"------------------------------------------------------------------------------
 " YouCompleteMe Plugin
-"---------------------------------------------
+"------------------------------------------------------------------------------
 "Plugin 'Valloric/ycmd'
 "Plugin 'Valloric/YouCompleteMe'
 " YouCompleteMe {
 
 "}
 
-""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Git plugin not hosted on GitHub
-""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Plugin 'git://git.wincent.com/command-t.git'
 
-""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " git repos on your local machine (i.e. when working on your own plugin)
-""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 "Plugin 'file:///home/gmarik/path/to/plugin'
 
-"----------------------
+"------------------------------------------------------------------------------
 " The sparkup vim script is in a subdirectory of this repo called vim.
-"----------------------
+"------------------------------------------------------------------------------
 " Pass the path to set the runtimepath properly.
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a different version somewhere else.
+" Install L9 and avoid a Naming conflict
+" if you've already installed a different version somewhere else.
 "Plugin 'ascenator/L9', {'name': 'newL9'}
 
-""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " All of your Plugins must be added before the following line
-""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call vundle#end()            " required
 filetype plugin indent on    " required
 
