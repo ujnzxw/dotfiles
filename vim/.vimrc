@@ -429,7 +429,7 @@ function! s:ToggleColorColumn()
 endfunction
 nnoremap <silent> <F3> :call <SID>ToggleColorColumn()<CR>
 
-" F8: Toggle hexdump view of binary files.
+" F10: Toggle hexdump view of binary files.
 function! s:ToggleHexdumpView()
     if &filetype ==# 'xxd'
         " Turn off hexdump view.
@@ -441,9 +441,9 @@ function! s:ToggleHexdumpView()
         set filetype=xxd
     endif
 endfunction
-nnoremap <silent> <F8> :call <SID>ToggleHexdumpView()<CR>
+nnoremap <silent> <F10> :call <SID>ToggleHexdumpView()<CR>
 
-" Shift+F8: Toggle objdump view of binary files.
+" Shift+F10: Toggle objdump view of binary files.
 function! s:ToggleObjdumpView()
     if &filetype ==# 'objdump'
         " Turn off objdump view.
@@ -468,7 +468,7 @@ function! s:ToggleObjdumpView()
         set readonly
     endif
 endfunction
-nnoremap <silent> <S-F8> :call <SID>ToggleObjdumpView()<CR>
+nnoremap <silent> <S-F10> :call <SID>ToggleObjdumpView()<CR>
 
 " F6: Toggle relative/absolute numbers.
 nnoremap <silent> <F6> :set relativenumber!<CR>:set relativenumber?<CR>

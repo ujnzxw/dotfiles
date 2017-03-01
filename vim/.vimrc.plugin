@@ -27,58 +27,86 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tomtom/tcomment_vim'
 
 "------------------------------------------------------------------------------
-" markdown-preview - Real-time markdown preview plugin for vim
+" suan/vim-instant-markdown - Instance Markdown Preview from Vim
 "------------------------------------------------------------------------------
-Plugin 'iamcco/markdown-preview.vim'
-" markdown-preview {
-    "path to the chrome or the command to open chrome(or other modern browsers)
-    let g:mkdp_path_to_chrome = "google-chrome"
+Plugin 'suan/vim-instant-markdown'
+" vim-instant-markdown {
+    " By default, vim-instant-markdown will update the display in realtime.
+    " If that taxes your system too much, you can specify
 
-    " set to 1, the vim will open the preview window once enter the markdown
-    " buffer
-    let g:mkdp_auto_start = 0
+    let g:instant_markdown_slow = 1
 
-    " set to 1, the vim will auto open preview window when you edit the
-    " markdown file
-    let g:mkdp_auto_open = 0
+    " By default, vim-instant-markdown will automatically launch the preview
+    " window when you open a markdown file. If you want to manually control this
+    "behavior, you can specify
 
-    " set to 1, the vim will auto close current preview window when change
-    " from markdown buffer to another buffer
-    let g:mkdp_auto_close = 1
+    let g:instant_markdown_autostart = 1
+    " in your .vimrc. You can then manually trigger preview via the command
+    " :InstantMarkdownPreview. This command is only available inside markdown
+    " buffers and when the autostart option is turned off.
 
-    " set to 1, the vim will just refresh markdown when save the buffer or
-    " leave from insert mode, default 0 is auto refresh markdown as you edit or
-    " move the cursor
-    let g:mkdp_refresh_slow = 0
+    " By default, the server only listens on localhost. To make the server a
+    " vailable to others in your network, edit your .vimrc and add
 
-    " set to 1, the MarkdownPreview command can be use for all files,
-    " by default it just can be use in markdown file
-    let g:mkdp_command_for_global = 0
+    " let g:instant_markdown_open_to_the_world = 1
 
-    " Key Mapping
-    "if isdirectory(expand("~/.vim/bundle/markdown-preview.vim"))
-        nmap <silent> <Leader>m <Plug>MarkdownPreview        " for normal mode
-        imap <silent> <Leader>m <Plug>MarkdownPreview        " for insert mode
-        nmap <silent> <Leader>M <Plug>StopMarkdownPreview    " for normal mode
-        imap <silent> <Leader>M <Plug>StopMarkdownPreview    " for insert mode
-    "endif
-    " F2: Toggle highlighting of characters exceeding textwidth.
-    "<C-m>: Toggle MarkdownPreview
-    let g:start_markdown_preview = 0
-    function! s:ToggleMarkdownPreview()
-        if g:start_markdown_preview == 0
-            let g:start_markdown_preview = 1
-            execute "normal \<Plug>MarkdownPreview"
-            echo 'Enable MarkdownPreview...'
-        else
-            let g:start_markdown_preview = 0
-            execute 'normal \<Plug>StopMarkdownPreview'
-            echo 'Disable MarkdownPreview...'
-        endif
-    endfunction
-    nnoremap <silent> <C-m> :call <SID>ToggleMarkdownPreview()<CR>
+
+    " By default, external resources such as images, stylesheets, frames and
+    " plugins are allowed. To block such content, edit your .vimrc and add
+
+    " let g:instant_markdown_allow_external_content = 0
+
 " }
 
+
+"------------------------------------------------------------------------------
+" iamcco/iamcco/markdown-preview.vim -
+"------------------------------------------------------------------------------
+Plugin 'iamcco/mathjax-support-for-mkdp'
+Plugin 'iamcco/markdown-preview.vim'
+" Markdown-preview {
+    " Command {
+        " MarkdownPreview
+        " open preview window in markdown buffer
+
+        " MarkdownPreviewStop
+        " close the preview window and server
+    " }
+
+
+    " Settings {
+        let g:mkdp_path_to_chrome = "google-chrome"
+        " path to the chrome or the command to open chrome(or other modern browsers)
+
+        let g:mkdp_auto_start = 0
+        " set to 1, the vim will open the preview window once enter the markdown
+        " buffer
+
+        let g:mkdp_auto_open = 0
+        " set to 1, the vim will auto open preview window when you edit the
+        " markdown file
+
+        let g:mkdp_auto_close = 1
+        " set to 1, the vim will auto close current preview window when change
+        " from markdown buffer to another buffer
+
+        let g:mkdp_refresh_slow = 0
+        " set to 1, the vim will just refresh markdown when save the buffer or
+        " leave from insert mode, default 0 is auto refresh markdown as you edit or
+        " move the cursor
+
+        let g:mkdp_command_for_global = 0
+        " set to 1, the MarkdownPreview command can be use for all files,
+        " by default it just can be use in markdown file
+    " }
+    " Key Mappings {
+        nmap <silent> <F8> <Plug>MarkdownPreview        " for normal mode
+        imap <silent> <F8> <Plug>MarkdownPreview        " for insert mode
+        nmap <silent> <F9> <Plug>StopMarkdownPreview    " for normal mode
+        imap <silent> <F9> <Plug>StopMarkdownPreview    " for insert mode
+    " }
+
+" }
 
 "------------------------------------------------------------------------------
 " Nerdtree - A tree explorer plugin for vim
@@ -244,11 +272,11 @@ Plugin 'Yggdroot/indentLine'
 Plugin 'taglist.vim'
 " Taglist {
     let Tlist_Ctags_Cmd='ctags'
-    let Tlist_Show_One_File=1               " don't display more than one files tag.
-    let Tlist_WinWidt =28                   " taglist width settings
-    let Tlist_Exit_OnlyWindow=1             " exit when taglist window is the last one
-    let Tlist_Use_Right_Window=1            " display taglist window on right
-    let Tlist_Use_Left_Window=1             " display taglist window on left
+    let Tlist_Show_One_File=1        " don't display more than one files tag.
+    let Tlist_WinWidt =28            " taglist width settings
+    let Tlist_Exit_OnlyWindow=1      " exit when taglist window is the last one
+    let Tlist_Use_Right_Window=1     " display taglist window on right
+    let Tlist_Use_Left_Window=1      " display taglist window on left
 " }
 
 
