@@ -18,12 +18,13 @@
 #**************************
 ROOT=$( cd "$( dirname "$0" )" && pwd )
 
+debug_mode='0'
 app_name='dotfiles'
+
 [ -z "$APP_PATH" ]    && APP_PATH="$HOME/.ujnzxw-dotfiles"
 [ -z "$REPO_URI" ]    && REPO_URI='https://github.com/ujnzxw/dotfiles.git'
 [ -z "$VUNDLE_URI" ]  && VUNDLE_URI="https://github.com/gmarik/vundle.git"
 [ -z "$REPO_BRANCH" ] && REPO_BRANCH="master"
-debug_mode='0'
 
 #**************************
 #   BASIC FUNCTIONS       *
@@ -35,15 +36,12 @@ msg()
 
 success()
 {
-    if [ "$ret" -eq '0' ]; then
-        msg "\33[32m[✔]\33[0m ${1}${2}"
-    fi
+    [ "$ret" -eq '0' ]; && msg "\33[32m[✔]\33[0m ${1}${2}"
 }
 
 error()
 {
-    msg "\33[31m[✘]\33[0m ${1}${2}"
-    exit 1
+    msg "\33[31m[✘]\33[0m ${1}${2}" && exit 1
 }
 
 warning()
@@ -65,9 +63,7 @@ program_exists()
     command -v $1 >/dev/null 2>&1 || { local ret='1'; }
 
     # fail on non-zero return value
-    if [ "$ret" -ne 0 ]; then
-        return 1
-    fi
+    [ "$ret" -ne 0 ] && return 1
 
     return 0
 }
@@ -77,9 +73,7 @@ program_must_exist()
     program_exists $1
 
     # throw error on non-zero return value
-    if [ "$?" -ne 0 ]; then
-        error "You must have '$1' installed to continue."
-    fi
+    [ "$?" -ne 0 ] && error "You must have '$1' installed to continue."
 }
 
 lnif()
@@ -93,7 +87,7 @@ lnif()
     debug
 }
 
-# @function: Create a soft link
+# @Function: Create a soft link
 # @Param:    src_file - the source file
 #            tar_file - the target file
 #
@@ -133,7 +127,7 @@ sync_repo() {
     local repo_branch="$3"
     local repo_name="$4"
 
-    msg "Trying to update $repo_name"
+    msg "Trying to update $repo_name ..."
 
     if [ ! -e "$repo_path" ]; then
         mkdir -p "$repo_path"
@@ -196,6 +190,10 @@ create_symlinks()
 #**************************
 program_must_exist "vim"
 program_must_exist "git"
+
+# check if tmux is existed, if not, tmux cannot be used
+program_exists "tmux"
+[ "$?" -ne 0 ] && warning "You should have '$1' installed to continue."
 
 # sync dotfiles repo
 sync_repo       "$APP_PATH" \
