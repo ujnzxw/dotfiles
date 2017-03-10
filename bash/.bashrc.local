@@ -14,19 +14,8 @@ export PATH=${JAVA_HOME}/bin:$PATH
 alias work='cd /media/xzhao027/Documents/Work'
 alias fed='cd /media/xzhao027/Documents/Work/Feature/12.134-SFED'
 alias csf='cd /media/xzhao027/Documents/Work/CSF'
+alias clcm='cd /media/xzhao027/Documents/Work/CSF/CLCM'
 alias doc='cd /media/xzhao027/Documents/Meterials'
-
-alias ssh-49-00='ssh lss@10.135.13.69'
-alias ssh-49-01='ssh lss@10.135.13.70'
-
-alias ssh-41-00='ssh lss@10.135.13.133'
-alias ssh-41-01='ssh lss@10.135.13.136'
-
-alias ssh-47-00='ssh lss@10.135.13.176'
-alias ssh-47-01='ssh lss@10.135.13.175'
-
-alias ssh-46-00='ssh lss@10.135.13.168'
-alias ssh-46-01='ssh lss@10.135.13.169'
 
 # proxy settings
 #if type set-proxy > /dev/null 2>&1; then
