@@ -67,6 +67,13 @@ Copyright (c) 2016 ujnzxw <ujnzxw@gmail.com>
 
 Distributed under the MIT license. See the LICENSE file for more details.
 
+Fix issues
+---------
+
+1. neocomplete requires Vim 7.3.885 or later with Lua support ("+lua").
+
+Please refer to vim/README.md
+
 
 Thanks
 ------
