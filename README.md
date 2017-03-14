@@ -94,4 +94,5 @@ Reference
 ---------
 1. [How to Install Pip on Ubuntu 14.04 LTS](http://www.liquidweb.com/kb/how-to-install-pip-on-ubuntu-14-04-lts/)
 2. [tmux - A Great Terminal Multiplexer](http://blog.chinaunix.net/attachment/attach/77/17/19/907717190c5d1d25c8b0c72bd53ad9c203af9561a.pdf)
+3. [How to install tmux](https://gist.github.com/Root-shady/d48d5282651634f464af)
 
