@@ -1152,6 +1152,9 @@ iabbrev recieve receive
 iabbrev recieved received
 iabbrev teh the
 iabbrev hte the
+iabbrev gti git
+iabbrev slef self
+
 
 " Command mistypes.
 nnoremap :E :e
