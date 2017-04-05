@@ -14,9 +14,9 @@ export PATH
 # Prepends $1 to $PATH, provided it is a directory and is not already in $PATH.
 # Based on http://superuser.com/a/39995.
 function prepend_to_path() {
-	if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
-		PATH="$1:$PATH"
-	fi
+    if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+        PATH="$1:$PATH"
+    fi
 }
 
 # Include the user's private bin.
@@ -27,27 +27,27 @@ prepend_to_path "$HOME/bin"
 #------------------------------------------------------------------------------
 
 if [ "$BASH" ]; then
-	if [ "$(id -u)" -eq 0 ]; then
-		# Root prompt is red.
-		PROMPT_COLOR='0;31m'
-		PROMPT_SYMBOL='#'
-	else
-		# Normal prompt is blue.
-		PROMPT_COLOR='1;34m'
-		PROMPT_SYMBOL='\n$'
-	fi
-	PS1="\[\033[$PROMPT_COLOR\]\A \u@\h \w \[\033[0m\]"
-	# When we are in GNU screen, insert '(screen)' in between ']' and '$'.
-	if [ ! -z "$STY" ]; then
-		PS1+='\[\033[1;33m(screen)\033[0m\] '
-	fi
-	PS1+="\[\033[$PROMPT_COLOR\]$PROMPT_SYMBOL\[\033[0m\] "
+    if [ "$(id -u)" -eq 0 ]; then
+        # Root prompt is red.
+        PROMPT_COLOR='0;31m'
+        PROMPT_SYMBOL='#'
+    else
+        # Normal prompt is blue.
+        PROMPT_COLOR='1;34m'
+        PROMPT_SYMBOL='\n$'
+    fi
+    PS1="\[\033[$PROMPT_COLOR\]\A \u@\h \w \[\033[0m\]"
+    # When we are in GNU screen, insert '(screen)' in between ']' and '$'.
+    if [ ! -z "$STY" ]; then
+        PS1+='\[\033[1;33m(screen)\033[0m\] '
+    fi
+    PS1+="\[\033[$PROMPT_COLOR\]$PROMPT_SYMBOL\[\033[0m\] "
 else
-	if [ "$(id -u)" -eq 0 ]; then
-		PS1='# '
-	else
-		PS1='$ '
-	fi
+    if [ "$(id -u)" -eq 0 ]; then
+        PS1='# '
+    else
+        PS1='$ '
+    fi
 fi
 export PS1
 
@@ -116,20 +116,20 @@ complete -f -X '!*.@(mp?(e)g|MP?(E)G|wma|avi|AVI|asf|vob|VOB|bin|dat|vcd|ps|pes|
 
 # git
 if [[ -f ~/.git-completion.bash ]]; then
-	source ~/.git-completion.bash
+    source ~/.git-completion.bash
 fi
 complete -o default -o nospace -F _git g
 
 # tmuxinator
 if [[ -f ~/.tmuxinator-completion.bash ]]; then
-	source ~/.tmuxinator-completion.bash
+    source ~/.tmuxinator-completion.bash
 fi
 
 # pacman
 pacman_completion() {
-	cur=$(_get_cword)
-	COMPREPLY=($(pacman -Sl | cut -d " " -f 2 | grep "^$cur" 2> /dev/null))
-	return 0
+    cur=$(_get_cword)
+    COMPREPLY=($(pacman -Sl | cut -d " " -f 2 | grep "^$cur" 2> /dev/null))
+    return 0
 }
 complete -F pacman_completion paci
 complete -F pacman_completion pacr
@@ -180,7 +180,7 @@ ulimit -Sc 0
 
 # Allow less to view *.gz etc. files.
 if command -v lesspipe.sh &> /dev/null; then
-	eval $(lesspipe.sh)
+    eval $(lesspipe.sh)
 fi
 
 #------------------------------------------------------------------------------
@@ -274,9 +274,9 @@ alias gvd='gvimdiff'
 function M() { make "$@" && make install; }
 alias news='newsbeuter -q'
 if [ "$(id -u)" -eq 0 ]; then
-	alias mntd='mount /dev/"`dmesg | grep -o "\\[[a-z1-9]*\\]" | tail -n 1 | tr -d []`"1 /mnt/disk && chown root:disk /mnt/disk && chmod 0770 /mnt/disk'
+    alias mntd='mount /dev/"`dmesg | grep -o "\\[[a-z1-9]*\\]" | tail -n 1 | tr -d []`"1 /mnt/disk && chown root:disk /mnt/disk && chmod 0770 /mnt/disk'
 else
-	alias mntd='sudo mount -o gid=disk,dmask=007,fmask=117 /dev/"`dmesg | grep -o "\\[[a-z1-9]*\\]" | tail -n 1 | tr -d []`"1 /mnt/disk'
+    alias mntd='sudo mount -o gid=disk,dmask=007,fmask=117 /dev/"`dmesg | grep -o "\\[[a-z1-9]*\\]" | tail -n 1 | tr -d []`"1 /mnt/disk'
 fi
 alias umntd='sudo umount /mnt/disk'
 alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
@@ -321,11 +321,11 @@ alias tocs='trs en:cs'
 # When run without any arguments, ping google.com; otherwise, ping whatever the
 # user wants.
 function pi() {
-	if [ $# -eq 0 ]; then
-		ping google.com
-	else
-		ping "$@"
-	fi
+    if [ $# -eq 0 ]; then
+        ping google.com
+    else
+        ping "$@"
+    fi
 }
 
 # Run the given command with arguments through gdb.
@@ -346,22 +346,22 @@ function ver() { v $(er "$@" | files); }
 
 # Checks the syntax of the given C file and prints errors.
 function csyntax() {
-	gcc -std=c11 -fsyntax-only "$1" 2>&1 | grep "error:"
+    gcc -std=c11 -fsyntax-only "$1" 2>&1 | grep "error:"
 }
 
 # Pacman/yaourt aliases.
 if command -v yaourt &> /dev/null; then
-	alias paci='yaourt -S'   # Install
-	alias pacr='yaourt -R'   # Remove
-	alias pacp='yaourt -Rns' # Purge
-	alias pacs='yaourt -Ss'  # Search
-	alias pacu='yaourt -Syu' # Upgrade
+    alias paci='yaourt -S'   # Install
+    alias pacr='yaourt -R'   # Remove
+    alias pacp='yaourt -Rns' # Purge
+    alias pacs='yaourt -Ss'  # Search
+    alias pacu='yaourt -Syu' # Upgrade
 else
-	alias paci='pacman -S'   # Install
-	alias pacr='pacman -R'   # Remove
-	alias pacp='pacman -Rns' # Purge
-	alias pacs='pacman -Ss'  # Search
-	alias pacu='pacman -Syu' # Upgrade
+    alias paci='pacman -S'   # Install
+    alias pacr='pacman -R'   # Remove
+    alias pacp='pacman -Rns' # Purge
+    alias pacs='pacman -Ss'  # Search
+    alias pacu='pacman -Syu' # Upgrade
 fi
 
 # Aptitude aliases.
@@ -379,12 +379,14 @@ alias deflate="perl -MCompress::Zlib -e 'undef $/; print uncompress(<>)'"
 #------------------------------------------------------------------------------
 
 if [[ -s ~/.bashrc.local ]]; then
-	source ~/.bashrc.local
+    source ~/.bashrc.local
 fi
 
 #------------------------------------------------------------------------------
 # Import local settings.
 #------------------------------------------------------------------------------
 if [[ -s ~/.Xmodmap ]]; then
-	xmodmap ~/.Xmodmap
+    if [[ -n "${DISPLAY+x}" ]; then
+        xmodmap ~/.Xmodmap
+    fi
 fi
