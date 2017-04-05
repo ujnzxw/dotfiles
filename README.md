@@ -67,6 +67,13 @@ Copyright (c) 2016 ujnzxw <ujnzxw@gmail.com>
 
 Distributed under the MIT license. See the LICENSE file for more details.
 
+Fix issues
+---------
+
+1. neocomplete requires Vim 7.3.885 or later with Lua support ("+lua").
+
+Please refer to vim/README.md
+
 
 Thanks
 ------
@@ -87,4 +94,5 @@ Reference
 ---------
 1. [How to Install Pip on Ubuntu 14.04 LTS](http://www.liquidweb.com/kb/how-to-install-pip-on-ubuntu-14-04-lts/)
 2. [tmux - A Great Terminal Multiplexer](http://blog.chinaunix.net/attachment/attach/77/17/19/907717190c5d1d25c8b0c72bd53ad9c203af9561a.pdf)
+3. [How to install tmux](https://gist.github.com/Root-shady/d48d5282651634f464af)
 

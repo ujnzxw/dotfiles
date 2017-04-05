@@ -36,7 +36,7 @@ msg()
 
 success()
 {
-    [ "$ret" -eq '0' ]; && msg "\33[32m[✔]\33[0m ${1}${2}"
+    [ "$ret" -eq '0' ] && msg "\33[32m[✔]\33[0m ${1}${2}"
 }
 
 error()
@@ -188,12 +188,18 @@ create_symlinks()
 #**************************
 #           MAIN          *
 #**************************
+program_must_exist "bash"
 program_must_exist "vim"
 program_must_exist "git"
 
+# check if running shell is bash, if not, use bash to login
+echo $SHELL | grep bash
+[ "$?" -ne 0 ] && bash=$(command -v "bash") && echo "exec $bash --login" >> $HOME/.profile
+
 # check if tmux is existed, if not, tmux cannot be used
 program_exists "tmux"
-[ "$?" -ne 0 ] && warning "You should have '$1' installed to continue."
+[ "$?" -ne 0 ] && warning "You should have 'tmux' installed to continue."
+msg "How to install tmux? - https://gist.github.com/Root-shady/d48d5282651634f464af "
 
 # sync dotfiles repo
 sync_repo       "$APP_PATH" \
@@ -212,6 +218,6 @@ sync_repo       "$HOME/.vim/bundle/vundle" \
 
 setup_vundle    "$APP_PATH/vim/.vimrc.plugin"
 
-msg             "\nThanks for installing $app_name."
+msg             "\nThanks for installing $app_name, please restart your shell first, enjoy it"
 msg             "© `date +%Y` https://github.com/ujnzxw"
 
