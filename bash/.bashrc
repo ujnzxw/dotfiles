@@ -386,7 +386,8 @@ fi
 # Import local settings.
 #------------------------------------------------------------------------------
 if [[ -s ~/.Xmodmap ]]; then
-    if [[ -n "${DISPLAY+x}" ]; then
+
+    if [[ -n "${DISPLAY+x}" ]]; then
         xmodmap ~/.Xmodmap
     fi
 fi
