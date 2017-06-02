@@ -375,6 +375,11 @@ alias aptu='aptitude update && aptitude upgrade'
 alias deflate="perl -MCompress::Zlib -e 'undef $/; print uncompress(<>)'"
 
 #------------------------------------------------------------------------------
+# Source autoenv: https://github.com/kennethreitz/autoenv
+#------------------------------------------------------------------------------
+source ../autoenv/activate.sh
+
+#------------------------------------------------------------------------------
 # Import local settings.
 #------------------------------------------------------------------------------
 
