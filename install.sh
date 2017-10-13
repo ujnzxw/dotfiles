@@ -36,17 +36,17 @@ msg()
 
 success()
 {
-    [ "$ret" -eq '0' ] && msg "\33[32m[✔]\33[0m ${1}${2}"
+    [ "$ret" -eq '0' ] && msg "\33[32m[SUCC]\33[0m ${1}${2}"
 }
 
 error()
 {
-    msg "\33[31m[✘]\33[0m ${1}${2}" && exit 1
+    msg "\33[31m[ERRO]\33[0m ${1}${2}" && exit 1
 }
 
 warning()
 {
-    msg "\33[33m[!]\33[0m ${1}${2}"
+    msg "\33[33m[WARN]\33[0m ${1}${2}"
 }
 
 
@@ -219,8 +219,13 @@ sync_repo       "$HOME/.vim/bundle/vundle" \
 setup_vundle    "$APP_PATH/vim/.vimrc.plugin"
 
 # add autoenv
+msg "add source autoenv in .bashrc: https://github.com/kennethreitz/autoenv"
+
+echo "#------------------------------------------------------------------------------" >> ~/.bashrc
+echo "# Source autoenv: https://github.com/kennethreitz/autoenv                      " >> ~/.bashrc
+echo "#------------------------------------------------------------------------------" >> ~/.bashrc
 echo "source ${APP_PATH}/autoenv/activate.sh" >> ~/.bashrc
 
-msg             "\nThanks for installing $app_name, please restart your shell first, enjoy it"
-msg             "© `date +%Y` https://github.com/ujnzxw"
+msg "\nThanks for installing $app_name, please restart your shell first, enjoy it"
+msg "© `date +%Y` https://github.com/ujnzxw"
 
