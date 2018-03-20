@@ -1,6 +1,6 @@
 [user]
-	name = Petr Zemek
-	email = s3rvac@gmail.com
+	name = X Z
+	email = zhaoxiaowei.cn@hotmail.com
 
 [color]
 	; Enable colored output.
@@ -68,6 +68,10 @@
 	; https://github.com/aanand/git-up
 	u = up
 	undo = reset --soft HEAD^
+	log1 = log --oneline --graph --decorate
+	st = status
+	co = checkout
+	br = branch
 
 [advice]
 	; Make git a little less verbose.
