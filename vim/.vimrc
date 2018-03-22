@@ -215,7 +215,7 @@ set backspace=indent,eol,start
 set sessionoptions=blank,buffers,curdir,globals,help,localoptions,resize,tabpages,winpos,winsize
 
 " Disable folds by default (i.e. automatically open all folds).
-set nofoldenable
+" set foldenable
 
 " No bell sounds.
 set noerrorbells visualbell t_vb=
@@ -391,7 +391,6 @@ function! s:ToggleSpelllang()
     else
         set spelllang=en_us,en_gb
     endif
-    set spelllang?
 endfunction
 nnoremap <silent> <S-F1> :call <SID>ToggleSpelllang()<CR>
 
