@@ -219,13 +219,13 @@ sync_repo       "$HOME/.vim/bundle/vundle" \
 setup_vundle    "$APP_PATH/vim/.vimrc.plugin"
 
 # add autoenv
-msg "add source autoenv in .bashrc: https://github.com/kennethreitz/autoenv"
+msg "add source autoenv in .bashrc.local: https://github.com/kennethreitz/autoenv"
 
-echo "#------------------------------------------------------------------------------" >> ~/.bashrc
-echo "# Source autoenv: https://github.com/kennethreitz/autoenv                      " >> ~/.bashrc
-echo "#------------------------------------------------------------------------------" >> ~/.bashrc
-echo "source ${APP_PATH}/autoenv/activate.sh" >> ~/.bashrc
+echo "#------------------------------------------------------------------------------" >> ~/.bashrc.local
+echo "# Source autoenv: https://github.com/kennethreitz/autoenv                      " >> ~/.bashrc.local
+echo "#------------------------------------------------------------------------------" >> ~/.bashrc.local
+echo "source ${APP_PATH}/autoenv/activate.sh" >> ~/.bashrc.local
 
-msg "\nThanks for installing $app_name, please restart your shell first, enjoy it"
+msg "\nThanks for installing $app_name, please restart your shell first, enjoy it!"
 msg "© `date +%Y` https://github.com/ujnzxw"
 
