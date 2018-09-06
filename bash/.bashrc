@@ -391,11 +391,3 @@ if [[ -s ~/.Xmodmap ]]; then
         xmodmap ~/.Xmodmap
     fi
 fi
-#------------------------------------------------------------------------------
-# Source autoenv: https://github.com/kennethreitz/autoenv
-#------------------------------------------------------------------------------
-source /home/xzhao027/.ujnzxw-dotfiles/autoenv/activate.sh
-#------------------------------------------------------------------------------
-# Source autoenv: https://github.com/kennethreitz/autoenv                      
-#------------------------------------------------------------------------------
-source /root/.ujnzxw-dotfiles/autoenv/activate.sh
