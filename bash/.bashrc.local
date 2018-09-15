@@ -1,9 +1,0 @@
-
-#-------------------------------------
-# File:   $HOME/.bashrc.local
-# Author: ujnzxw
-# Desc:   This is your local bash settings
-#-------------------------------------
-
-set -o vi
-source /root/data/vlab/v5163_node002_CTO_CLCM-openrc.sh
