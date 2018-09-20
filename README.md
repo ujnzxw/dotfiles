@@ -4,7 +4,7 @@ ujnzxw's Dot Files
 Steven ZHAO's configuration files.
 
 Linux, \*nix Installation
-------------
+------------------------
 The easiest way to install ujnzxw-dotfiles is to use our automatic installer by simply copying and pasting the following line into a terminal. This will install ujnzxw-dotfiles and backup your existing vim configuration.
 
 *Requires Git 1.7+ and Vim 7.3+*
@@ -23,8 +23,40 @@ sh <(curl https://raw.githubusercontent.com/ujnzxw/dotfiles/master/install.sh -L
 
 
 
-Software/Plugin Abstract
-------------------------
+Features:
+---------
+Many features are included in this dotfiles project. In fact, all the dotfiles you concerned can be managed and maintained by dotfiles project. Such as bash dot files(.bashrc, etc), VIM dot files (.vimrc, plugins, etc), TMUX dotfiles, python autoenv scripts, etc.
+
+Here I only list the main features for every part. 
+
+#### Bash
+It include bash dot files: .bashrc, .bash_profile, .bashrc.local. 
+
+You can add your bash settings into .bashrc.local if you need, and this file is ignored by dotfiles git.
+The main bash configuration data is included in .bashrc, it include but not limit:
+
+* Editor defination
+* History settings
+* Language and Time Zone settings
+* Many useful aliases and functions defination, such as `function bak() { cp -a "$1" "$1".bak; }`
+* PS1 - Command lind prompt string settings 
+
+#### Vim
+It include Vim dotfiles: .vimrc and .vimrc.plugins
+
+The main Vim configuration data is included in .vimrc, the features for Vim include but not limit:
+* use Vundle to manage VIM plugins
+* Support Ctags (Hot Key `F5` trigger)
+* Support file tree (Hot Key `F4` trigger)
+* Support Vim airline
+* Support auto-complete
+* Code auto format for python code (`*.py`) and Go code (`*.go`)
+* Exceeding chars highlight (Hot Key `F2` trigger highlight and `F3` trigger reminder line)
+* Suppot spelling check and auto correcting
+* Ctrl + S to save files (equal to :w)
+
+Below is the introduction for the plugins installed in Vim:
+
 #####  Vundle
 
 A vim plugin manager
@@ -53,12 +85,23 @@ lean & mean status/tabline for vim that's light as air
    - Set font SIZE to 11
 3. Install vim-airline by Vundle
 
-##### pip
+##### gmarik/vundle
 
-Pip is a tool for installing and managing Python packages.
+Plugin Manager
 
-`curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"`
-`python get-pip.py`
+##### majutsushi/tagbar
+
+Vim plugin that displays tags in a window
+ordered by scope http://majutsushi.github.com/tagbar/
+
+##### Shougo/neocomplete.vim
+
+Auto-compete plugin
+
+##### fatih/vim-go
+
+Go development plugin for Vim https://patreon.com/fatih
+
 
 License
 -------
