@@ -7,7 +7,7 @@ Linux, \*nix Installation
 ------------------------
 The easiest way to install ujnzxw-dotfiles is to use our automatic installer by simply copying and pasting the following line into a terminal. This will install ujnzxw-dotfiles and backup your existing vim configuration.
 
-*Requires Git 1.7+ and Vim 7.3+*
+*Requires Git 1.7+ and Vim 7.4.2009+*
 
 ```
 export APP_PATH=/your/Install/path (Default path is: ~/.ujnzxw-dotfiles)
@@ -29,7 +29,7 @@ Many features are included in this dotfiles project. In fact, all the dotfiles y
 
 Here I only list the main features for every part. 
 
-#### Bash
+### Bash
 It include bash dot files: .bashrc, .bash_profile, .bashrc.local. 
 
 You can add your bash settings into .bashrc.local if you need, and this file is ignored by dotfiles git.
@@ -41,7 +41,7 @@ The main bash configuration data is included in .bashrc, it include but not limi
 * Many useful aliases and functions defination, such as `function bak() { cp -a "$1" "$1".bak; }`
 * PS1 - Command lind prompt string settings 
 
-#### Vim
+### Vim
 It include Vim dotfiles: .vimrc and .vimrc.plugins
 
 The main Vim configuration data is included in .vimrc, the features for Vim include but not limit:
@@ -55,9 +55,9 @@ The main Vim configuration data is included in .vimrc, the features for Vim incl
 * Suppot spelling check and auto correcting
 * Ctrl + S to save files (equal to :w)
 
-Below is the introduction for the plugins installed in Vim:
+**Below is the introduction for the plugins installed in Vim:**
 
-#####  Vundle
+####  Vundle
 
 A vim plugin manager
 
@@ -67,13 +67,13 @@ A vim plugin manager
 
 The configuration please find ../vim/.vimrc.plugin
 
-##### Vimperator
+#### Vimperator
 
 Vimperator is a free browser add-on for Firefox, which makes it look and behave like the Vim text editor.
 
 Please install this add-on in Firfox.
 
-##### Vim-airline
+#### Vim-airline
 
 lean & mean status/tabline for vim that's light as air
 
@@ -85,20 +85,22 @@ lean & mean status/tabline for vim that's light as air
    - Set font SIZE to 11
 3. Install vim-airline by Vundle
 
-##### gmarik/vundle
+#### gmarik/vundle
 
 Plugin Manager
 
-##### majutsushi/tagbar
+#### majutsushi/tagbar
 
 Vim plugin that displays tags in a window
 ordered by scope http://majutsushi.github.com/tagbar/
 
-##### Shougo/neocomplete.vim
+#### Shougo/neocomplete.vim
 
 Auto-compete plugin
 
-##### fatih/vim-go
+#### fatih/vim-go
+
+*requires at least Vim 7.4.2009 *
 
 Go development plugin for Vim https://patreon.com/fatih
 
@@ -138,4 +140,3 @@ Reference
 1. [How to Install Pip on Ubuntu 14.04 LTS](http://www.liquidweb.com/kb/how-to-install-pip-on-ubuntu-14-04-lts/)
 2. [tmux - A Great Terminal Multiplexer](http://blog.chinaunix.net/attachment/attach/77/17/19/907717190c5d1d25c8b0c72bd53ad9c203af9561a.pdf)
 3. [How to install tmux](https://gist.github.com/Root-shady/d48d5282651634f464af)
-
