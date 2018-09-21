@@ -221,9 +221,9 @@ setup_vundle    "$APP_PATH/vim/.vimrc.plugin"
 # add autoenv
 msg "add source autoenv in .bashrc.local: https://github.com/kennethreitz/autoenv"
 
-echo "#------------------------------------------------------------------------------" >> ~/.bashrc.local
-echo "# Source autoenv: https://github.com/kennethreitz/autoenv                      " >> ~/.bashrc.local
-echo "#------------------------------------------------------------------------------" >> ~/.bashrc.local
+echo "#--------------------------------------------------------" >> ~/.bashrc.local
+echo "# dot in autoenv: https://github.com/kennethreitz/autoenv" >> ~/.bashrc.local
+echo "#--------------------------------------------------------" >> ~/.bashrc.local
 echo "source ${APP_PATH}/autoenv/activate.sh" >> ~/.bashrc.local
 
 msg "\nThanks for installing $app_name, please restart your shell first, enjoy it!"
