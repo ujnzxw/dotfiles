@@ -59,19 +59,8 @@ The main Vim configuration data is included in .vimrc, the features for Vim incl
 
 ####  Vundle
 
-A vim plugin manager
+A vim plugin manager, this is the [GitHub](https://github.com/VundleVim/Vundle.vim) homepage.
 
-[GitHub](https://github.com/VundleVim/Vundle.vim)
-
-`git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/vundle`
-
-The configuration please find ../vim/.vimrc.plugin
-
-#### Vimperator
-
-Vimperator is a free browser add-on for Firefox, which makes it look and behave like the Vim text editor.
-
-Please install this add-on in Firfox.
 
 #### Vim-airline
 
@@ -116,6 +105,11 @@ Fix issues
 ---------
 
 1. neocomplete requires Vim 7.3.885 or later with Lua support ("+lua").
+2. update Vim to 8.0 to adapt vim-go plugin.
+   procedure: 
+   - download [vim-enhanced-8.0.003-1.gf.el7.x86_64.rpm](http://mirror.ghettoforge.org/distributions/gf/el/7/plus/x86_64//vim-enhanced-8.0.003-1.gf.el7.x86_64.rpm)
+   - download [vim-common-8.0.003-1.gf.el7.x86_64.rpm](http://mirror.ghettoforge.org/distributions/gf/el/7/plus/x86_64//vim-common-8.0.003-1.gf.el7.x86_64.rpm)
+   - yum install vim-enhanced* vim-common*
 
 Please refer to vim/README.md
 
