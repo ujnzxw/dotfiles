@@ -20,17 +20,14 @@ export APP_PATH=/your/Install/path (Default path is: ~/.ujnzxw-dotfiles)
 sh <(curl https://raw.githubusercontent.com/ujnzxw/dotfiles/master/install.sh -L)
 ```
 
-
-
-
 Features:
 ---------
 Many features are included in this dotfiles project. In fact, all the dotfiles you concerned can be managed and maintained by dotfiles project. Such as bash dot files(.bashrc, etc), VIM dot files (.vimrc, plugins, etc), TMUX dotfiles, python autoenv scripts, etc.
 
-Here I only list the main features for every part. 
+Here I only list the main features for every part.
 
 ### Bash
-It include bash dot files: .bashrc, .bash_profile, .bashrc.local. 
+It include bash dot files: .bashrc, .bash_profile, .bashrc.local.
 
 You can add your bash settings into .bashrc.local if you need, and this file is ignored by dotfiles git.
 The main bash configuration data is included in .bashrc, it include but not limit:
@@ -39,7 +36,7 @@ The main bash configuration data is included in .bashrc, it include but not limi
 * History settings
 * Language and Time Zone settings
 * Many useful aliases and functions defination, such as `function bak() { cp -a "$1" "$1".bak; }`
-* PS1 - Command lind prompt string settings 
+* PS1 - Command lind prompt string settings
 
 ### Vim
 It include Vim dotfiles: .vimrc and .vimrc.plugins
@@ -54,6 +51,14 @@ The main Vim configuration data is included in .vimrc, the features for Vim incl
 * Exceeding chars highlight (Hot Key `F2` trigger highlight and `F3` trigger reminder line)
 * Suppot spelling check and auto correcting
 * Ctrl + S to save files (equal to :w)
+
+### autoenv
+
+If a directory contains a `.env` file, it will automatically be executed
+when you `cd` into it.
+For details please refer to kennethreitz/autoenv[](https://github.com/kennethreitz/autoenv)
+
+
 
 **Below is the introduction for the plugins installed in Vim:**
 
@@ -106,7 +111,7 @@ Fix issues
 
 1. neocomplete requires Vim 7.3.885 or later with Lua support ("+lua").
 2. update Vim to 8.0 to adapt vim-go plugin.
-   procedure: 
+   procedure:
    - download [vim-enhanced-8.0.003-1.gf.el7.x86_64.rpm](http://mirror.ghettoforge.org/distributions/gf/el/7/plus/x86_64//vim-enhanced-8.0.003-1.gf.el7.x86_64.rpm)
    - download [vim-common-8.0.003-1.gf.el7.x86_64.rpm](http://mirror.ghettoforge.org/distributions/gf/el/7/plus/x86_64//vim-common-8.0.003-1.gf.el7.x86_64.rpm)
    - yum install vim-enhanced* vim-common*
