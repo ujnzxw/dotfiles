@@ -305,6 +305,11 @@ Plugin 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
     let g:go_highlight_extra_types = 1
     let g:go_highlight_generate_tags = 1
 
+    " If you really want to continue you can set this to make the error go away:
+    " Note that some features may error out or behave incorrectly.
+    " Please do not report bugs unless you're using Vim 7.4.2009 or newer.
+    let g:go_version_warning = 0
+
     " Open :GoDeclsDir with ctrl-g
     nmap <C-g> :GoDeclsDir<cr>
     imap <C-g> <esc>:<C-u>GoDeclsDir<cr>
