@@ -110,6 +110,14 @@ Fix issues
 ---------
 
 1. neocomplete requires Vim 7.3.885 or later with Lua support ("+lua").
+   ```
+   # sudo yum install -y ruby ruby-devel lua lua-devel luajit luajit-devel ctags mercurial python python-devel python3 python3-devel tcl-devel perl perl-devel perl-ExtUtils-ParseXS perl-ExtUtils-XSpp perl-ExtUtils-CBuilder perl-ExtUtils-Embed ncurses-devel
+   # git clone https://github.com/vim/vim.git
+   # cd vim
+   # ./configure --with-features=huge --enable-multibyte --enable-rubyinterp --enable-pythoninterp --enable-perlinterp --enable-luainterp --enable-gui=gtk2 --enable-cscope --with-tlib=ncurses --prefix=/usr
+   # sudo make install
+   ```
+ 
 2. update Vim to 8.0 to adapt vim-go plugin.
    procedure:
    - download [vim-enhanced-8.0.003-1.gf.el7.x86_64.rpm](http://mirror.ghettoforge.org/distributions/gf/el/7/plus/x86_64//vim-enhanced-8.0.003-1.gf.el7.x86_64.rpm)
