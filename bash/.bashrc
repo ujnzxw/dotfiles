@@ -1,6 +1,6 @@
 #------------------------------------------------------------------------------
 # File:   $HOME/.bashrc
-# Author: Petr Zemek <s3rvac@gmail.com>
+# Author: ujnzxw <ujnzxw@gmail.com>
 #
 # Based on http://www.hermann-uwe.de/files/bashrc.
 #------------------------------------------------------------------------------
@@ -11,6 +11,7 @@
 
 export PATH
 
+
 # Prepends $1 to $PATH, provided it is a directory and is not already in $PATH.
 # Based on http://superuser.com/a/39995.
 function prepend_to_path() {
@@ -20,7 +21,23 @@ function prepend_to_path() {
 }
 
 # Include the user's private bin.
-prepend_to_path "$HOME/bin"
+uname_out="$(uname -s)"
+case "${uname_out}" in
+    Linux*)
+        prepend_to_path "$HOME/bin"
+        machine=Linux
+        ;;
+    Darwin*)
+        machine=Mac
+        prepend_to_path "/opt/homebrew/bin"
+        ;;
+    CYGWIN*)    machine=Cygwin;;
+    MINGW*)     machine=MinGw;;
+    MSYS_NT*)   machine=Git;;
+    *)          machine="UNKNOWN:${uname_out}"
+esac
+
+export PATH
 
 #------------------------------------------------------------------------------
 # Prompt.
@@ -59,7 +76,7 @@ PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 #------------------------------------------------------------------------------
 
 # Allow typing just 'dir' instead of 'cd dir'.
-shopt -s autocd
+# shopt -s autocd
 
 # Check that a command found in the hash table exists before trying to execute
 # it. If a hashed command no longer exists, a normal path search is performed.
@@ -77,7 +94,7 @@ shopt -s cmdhist
 shopt -s extglob
 
 # Enable recursive globbing with **.
-shopt -s globstar
+# shopt -s globstar
 
 # Make the history list appended to the file named by the value of the HISTFILE
 # variable when the shell exits, rather than overwriting the file.

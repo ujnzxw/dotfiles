@@ -21,7 +21,7 @@ ROOT=$( cd "$( dirname "$0" )" && pwd )
 debug_mode='0'
 app_name='dotfiles'
 
-[ -z "$APP_PATH" ]    && APP_PATH="$HOME/.ujnzxw-dotfiles"
+[ -z "$APP_PATH" ]    && APP_PATH="$HOME/.dotfiles"
 [ -z "$REPO_URI" ]    && REPO_URI='https://github.com/ujnzxw/dotfiles.git'
 [ -z "$VUNDLE_URI" ]  && VUNDLE_URI="https://github.com/gmarik/vundle.git"
 [ -z "$REPO_BRANCH" ] && REPO_BRANCH="master"
@@ -172,8 +172,8 @@ create_symlinks()
     LN "$source_path/bash/.bashrc.local"       "$target_path/.bashrc.local"
     LN "$source_path/vim/.vimrc"               "$target_path/.vimrc"
     LN "$source_path/vim/.vimrc.plugin"        "$target_path/.vimrc.plugin"
-    LN "$source_path/xmodmap/.Xmodmap"         "$target_path/.Xmodmap"
-    LN "$source_path/mplayer/.mplayer"         "$target_path/.mplayer"
+#   LN "$source_path/xmodmap/.Xmodmap"         "$target_path/.Xmodmap"
+#   LN "$source_path/mplayer/.mplayer"         "$target_path/.mplayer"
     LN "$source_path/vimperator/.vimperatorrc" "$target_path/.vimperatorrc"
     LN "$source_path/ssh/config"               "$target_path/.ssh/config"
     LN "$source_path/tmux/.tmux.conf"          "$target_path/.tmux.conf"
